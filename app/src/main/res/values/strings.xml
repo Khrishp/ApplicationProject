@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ApplicationProject</string>
+    <string name="nextWeek"><![CDATA[->]]></string>
+    <string name="goNext">Week -></string>
+    <string name="goBack"><![CDATA[<- Week]]></string>
+    <string name="Calendar">Schedule</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Return">Go Back</string>
 </resources>
