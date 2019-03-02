@@ -32,6 +32,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".VolunteerListActivity"
+            android:parentActivityName=".VolunteerListActivity"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VolunteerListActivity"/>
+            <intent-filter>
+                <action android:name="android.intent.action.VOLUNTEERLIST" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

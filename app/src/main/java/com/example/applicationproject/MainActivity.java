@@ -37,5 +37,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
+    public void goToVolunteerList(View view) {
+        Intent intent = new Intent(this, VolunteerListActivity.class);
+        startActivity(intent);
+    }
 
 }

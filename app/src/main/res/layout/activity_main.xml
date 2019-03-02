@@ -73,6 +73,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="75dp"
                 android:background="@android:color/holo_blue_dark"
+                android:onClick="goToVolunteerList"
                 android:text="Volunteer List"
                 app:layout_constraintEnd_toStartOf="@+id/loginButton"
                 app:layout_constraintHorizontal_bias="0.485"
