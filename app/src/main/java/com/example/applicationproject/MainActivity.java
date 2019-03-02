@@ -1,16 +1,18 @@
 package com.example.applicationproject;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-//Let's make accounts but calendar first  - Garrett/Corbin
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
     }
-    
-    // this is richard trying to figure out github on my desktop
+
+    public void goToCalendar(View view) {
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+    }
+
 }

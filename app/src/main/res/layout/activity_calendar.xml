@@ -268,6 +268,7 @@
             android:layout_marginEnd="49dp"
             android:layout_marginBottom="31dp"
             android:background="@android:color/holo_blue_dark"
+            android:onClick="returnToMain"
             android:text="@string/Return"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button3"
