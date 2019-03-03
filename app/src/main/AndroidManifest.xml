@@ -9,37 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ProfileActivity"></activity>
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".MainActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
 
-        <activity android:name=".MainActivity"
-            android:parentActivityName=".MainActivity"
-            xmlns:android="http://schemas.android.com/apk/res/android">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".CalendarActivity"
-            android:parentActivityName=".CalendarActivity"
-            xmlns:android="http://schemas.android.com/apk/res/android">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CalendarActivity"/>
-            <intent-filter>
-                <action android:name="android.intent.action.CALENDAR" />
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".VolunteerListActivity"
-            android:parentActivityName=".VolunteerListActivity"
-            xmlns:android="http://schemas.android.com/apk/res/android">
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".CalendarActivity"
+            android:parentActivityName=".CalendarActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VolunteerListActivity"/>
+                android:value=".CalendarActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.CALENDAR" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".VolunteerListActivity"
+            android:parentActivityName=".VolunteerListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VolunteerListActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VOLUNTEERLIST" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
