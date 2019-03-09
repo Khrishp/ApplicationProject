@@ -8,4 +8,5 @@
     <string name="Cancel">Cancel</string>
     <string name="Return">Go Back</string>
     <string name="Go">Go</string>
+    <string name="month_day_month_day">MONTH / DAY - MONTH / DAY</string>
 </resources>

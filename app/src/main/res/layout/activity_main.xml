@@ -30,8 +30,8 @@
             <Button
                 android:id="@+id/loginButton"
                 style="@android:style/Widget.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="49dp"
+                android:layout_width="62dp"
+                android:layout_height="27dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/holo_blue_dark"
@@ -40,59 +40,57 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/createNewsButton"
-                style="@android:style/Widget.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="27dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="48dp"
-                android:background="@android:color/holo_blue_dark"
-                android:text="Create News"
-                app:layout_constraintEnd_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
-
-            <Button
                 android:id="@+id/volunteerButton"
-                style="@android:style/Widget.Button.Small"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:background="@android:color/holo_blue_dark"
-                android:onClick="goToCalendar"
                 android:text="Volunteer"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <Button
-                android:id="@+id/volunteerList"
+                android:id="@+id/createNewsButton"
                 style="@android:style/Widget.Button.Small"
-                android:layout_width="163dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="72dp"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="84dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:color/holo_blue_dark"
+                android:text="Create News"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+            <Button
+                android:id="@+id/volunteerListButton"
+                style="@android:style/Widget.Button.Small"
+                android:layout_width="104dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="50dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="75dp"
                 android:background="@android:color/holo_blue_dark"
-                android:onClick="goToVolunteerList"
                 android:text="Volunteer List"
                 app:layout_constraintEnd_toStartOf="@+id/loginButton"
-                app:layout_constraintHorizontal_bias="0.485"
                 app:layout_constraintStart_toEndOf="@+id/volunteerButton"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="match_parent"
+                android:layout_width="133dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="60dp"
                 android:text="News"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/volunteerList" />
+                app:layout_constraintTop_toBottomOf="@+id/volunteerListButton" />
 
             <ListView
                 android:layout_width="413dp"
