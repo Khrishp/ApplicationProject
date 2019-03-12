@@ -14,8 +14,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -57,16 +57,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNews(View view) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        DatabaseReference myRef2 = database.getReference("test2");
-
-        myRef2.setValue("A more stable test");
-        myText = findViewById(R.id.TEMPORARY);
-        myRef.setValue(myText);
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("message");
+//        DatabaseReference myRef2 = database.getReference("test2");
+//
+//        myRef2.setValue("A more stable test");
+//        myText = findViewById(R.id.TEMPORARY);
+//        myRef.setValue(myText);
     }
 
-    public void goToCalendar(View view) {
+    public void goToCalendar() {
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
     }
