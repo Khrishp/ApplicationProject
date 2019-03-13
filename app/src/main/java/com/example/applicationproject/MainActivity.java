@@ -56,13 +56,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNews(View view) {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         DatabaseReference myRef2 = database.getReference("test2");
 
         myRef2.setValue("A more stable test");
         myText = findViewById(R.id.TEMPORARY);
-        myRef.setValue(myText);
+        myRef.setValue(myText);*/
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        Log.v(TAG, "got the instance.");
+        DatabaseReference myRef = database.getReference("message");
+        Log.v(TAG, "got the reference.");
+        myRef.setValue("Poop");
+        Log.v(TAG, "set the value");
     }
 
     public void goToCalendar() {
