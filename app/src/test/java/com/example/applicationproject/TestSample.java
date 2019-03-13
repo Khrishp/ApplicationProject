@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class TestSample {
 
     @Test
-    public void testAddition() {
+    public  void testAddition() {
         assertEquals(4, 2+2);
     }
 }

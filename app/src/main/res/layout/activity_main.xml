@@ -16,10 +16,10 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/mainActivityTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Rexburg Animal Shelter"
+                android:text="@string/MainActivityTitle"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="36sp"
@@ -35,9 +35,9 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/holo_blue_dark"
-                android:text="Login"
+                android:text="@string/loginButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
 
             <Button
                 android:id="@+id/volunteerButton"
@@ -46,9 +46,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@android:color/holo_blue_dark"
-                android:text="Volunteer"
+                android:text="@string/volunteerButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
 
             <Button
                 android:id="@+id/createNewsButton"
@@ -59,10 +59,10 @@
                 android:layout_marginTop="84dp"
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/holo_blue_dark"
-                android:text="Create News"
+                android:text="@string/createNewsButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintStart_toEndOf="@+id/newsTitle"
                 app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
             <Button
@@ -74,44 +74,44 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="75dp"
                 android:background="@android:color/holo_blue_dark"
-                android:text="Volunteer List"
+                android:text="@string/volunteerListButton"
                 app:layout_constraintEnd_toStartOf="@+id/loginButton"
                 app:layout_constraintStart_toEndOf="@+id/volunteerButton"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/newsTitle"
                 android:layout_width="133dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="139dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="34dp"
-                android:text="News"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="60dp"
+                android:text="@string/newsTitle"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="36sp"
-                app:layout_constraintEnd_toStartOf="@+id/createNewsButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TEMPORARY" />
+                app:layout_constraintTop_toBottomOf="@+id/volunteerListButton" />
 
             <ListView
                 android:layout_width="413dp"
-                android:layout_height="617dp"
-                android:layout_marginTop="180dp"
+                android:layout_height="701dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
 
             <EditText
                 android:id="@+id/TEMPORARY"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="14dp"
                 android:ems="10"
-                android:hint="New Msg"
+                android:hint="@string/tempString"
                 android:inputType="textPersonName"
-                android:text="Put text here"
                 android:textColor="@color/colorAccent"
+                app:layout_constraintBottom_toTopOf="@+id/newsTitle"
+                app:layout_constraintEnd_toStartOf="@+id/newsTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/volunteerButton" />
 

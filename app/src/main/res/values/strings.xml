@@ -9,4 +9,11 @@
     <string name="Return">Go Back</string>
     <string name="Go">Go</string>
     <string name="month_day_month_day">MONTH / DAY - MONTH / DAY</string>
+    <string name="MainActivityTitle">Rexburg Animal Shelter</string>
+    <string name="newsTitle">News</string>
+    <string name="volunteerListButton">Volunteer List</string>
+    <string name="createNewsButton">Create News</string>
+    <string name="volunteerButton">Volunteer</string>
+    <string name="loginButton">Login</string>
+    <string name="tempString">New Msg</string>
 </resources>
