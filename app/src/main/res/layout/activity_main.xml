@@ -83,35 +83,35 @@
                 android:id="@+id/textView8"
                 android:layout_width="133dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginStart="139dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="34dp"
                 android:text="News"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="36sp"
+                app:layout_constraintEnd_toStartOf="@+id/createNewsButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/volunteerList" />
+                app:layout_constraintTop_toBottomOf="@+id/TEMPORARY" />
 
             <ListView
                 android:layout_width="413dp"
-                android:layout_height="701dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="617dp"
+                android:layout_marginTop="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <EditText
                 android:id="@+id/TEMPORARY"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="32dp"
                 android:ems="10"
                 android:hint="New Msg"
                 android:inputType="textPersonName"
+                android:text="Put text here"
                 android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toTopOf="@+id/textView8"
-                app:layout_constraintEnd_toStartOf="@+id/textView8"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/volunteerButton" />
 
