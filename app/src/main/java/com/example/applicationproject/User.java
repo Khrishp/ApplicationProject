@@ -8,7 +8,7 @@ public class User {
     private Integer age;
     private Integer hoursCount;
     private Integer permissions;
-    private Integer phoneNumber;
+    private Double phoneNumber;
     //picture data type?
 
     User(){ // new account is created
@@ -45,11 +45,11 @@ public class User {
         this.permissions = permissions;
     }
 
-    public Integer getPhoneNumber() {
+    public Double getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(Double phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
