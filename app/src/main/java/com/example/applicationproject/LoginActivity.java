@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -75,35 +76,50 @@ public class LoginActivity extends AppCompatActivity{
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEmailView = (AutoCompleteTextView)findViewById(R.id.email);
-                mPasswordView = (EditText)findViewById(R.id.password);
+
+                mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+                mPasswordView = (EditText) findViewById(R.id.password);
                 String email = mEmailView.getText().toString();
                 String pass = mPasswordView.getText().toString();
 
                 Log.v(TAG, "Email being passed to function is: " + email);
                 Log.v(TAG, "Password being passed to function is: " + pass);
 
-                if(!isEmailValid(email))
-                    Toast.makeText(LoginActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
-                if(!isPasswordValid(pass))
-                    Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
-                else
-                    mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Log.d(TAG, "createUserWithEmail: Success");
-                                FirebaseUser user = mAuth.getCurrentUser(); //TODO: update UI accordingly
-                                updateUi(user);
-                            } else{
-                                Log.w(TAG, "createUserWithEmail: Failure", task.getException());
-                                Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                updateUi(null);
+                mAuth.signInWithEmailAndPassword(email, pass).addOnSuccessListener(LoginActivity.this, new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(LoginActivity.this, "Signed-in", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                if (mAuth.getCurrentUser() == null) {
+
+                    if (!isEmailValid(email))
+                        Toast.makeText(LoginActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
+                    if (!isPasswordValid(pass))
+                        Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
+                    else
+                        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "createUserWithEmail: Success");
+                                    FirebaseUser user = mAuth.getCurrentUser(); //TODO: update UI accordingly
+                                    updateUi(user);
+                                    finish();
+                                } else {
+                                    Log.w(TAG, "createUserWithEmail: Failure", task.getException());
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    updateUi(null);
+                                    finish();
+                                }
                             }
-                        }
-                    });
-            }
-        });
+                        });
+                }else{
+                    Toast.makeText(LoginActivity.this, "Already Signed in", Toast.LENGTH_LONG).show();
+                    finish();
+                }
+            }});
     }
 
     private boolean isEmailValid(String email) {

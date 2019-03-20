@@ -1,6 +1,7 @@
 package com.example.applicationproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,18 +11,34 @@ import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * This activity will be able to lead to most of the other activities. It will check
+ * SharedPreferences to see if a user is logged in and change it's UI accordingly.
+ */
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseAuth mAuth;
-    TextView myText;
+    FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
+
+    Button volunteerListButton = (Button)findViewById(R.id.volunteerListButton);
+    Button createNewsButton = (Button)findViewById(R.id.createNewsButton);
+    Button volunteerButton = (Button)findViewById(R.id.volunteerButton);
+    Button loginButton = (Button)findViewById(R.id.loginButton);
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
@@ -35,8 +52,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button volunteerListButton = (Button)findViewById(R.id.volunteerListButton);
-        Button volunteerButton = (Button)findViewById(R.id.volunteerButton);
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
+        updateUi(user); // then update UI accordingly
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -44,32 +63,72 @@ public class MainActivity extends AppCompatActivity {
                 goToVolunteerList();
             }
         });
-
+        createNewsButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNews();
+            }
+        });
         volunteerButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
                 goToCalendar();
             }
         });
+        loginButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(loginButton.getText() == "Login")
+                    login();
+                else
+                    signout(loginButton);
+            }
+        });
+
 
         FirebaseApp.initializeApp(this);
     }
 
-    public void createNews(View view) {
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        DatabaseReference myRef2 = database.getReference("test2");
-
-        myRef2.setValue("A more stable test");
-        myText = findViewById(R.id.TEMPORARY);
-        myRef.setValue(myText);*/
+    public void createNews() {
+        /* This was working database stuff
+        System.out.println("in create news function");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        Log.v(TAG, "got the instance.");
-        database.goOnline();
+        System.out.println( "got the instance.");
         DatabaseReference myRef = database.getReference("message");
-        Log.v(TAG, "got the reference.");
+        System.out.println("got the reference.");
         myRef.setValue("Poop");
-        Log.v(TAG, "set the value");
+        System.out.println("set the value");
+        */
+
+        db = FirebaseFirestore.getInstance();
+
+        User richard = new User();
+        richard.setAge(23);
+        richard.setName("Richard Hawkins");
+        richard.setPhoneNumber(Double.valueOf("5093851497"));
+
+        db.collection("users").add(richard).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Log.d(TAG, "Document added with ID: " + documentReference.getId());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.w(TAG, "Error adding document", e);
+            }
+        });
+
+    }
+
+    public void signout(Button loginButton){
+        mAuth.signOut();
+        loginButton.setText("Sign Out");
+    }
+
+    public void login(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void goToCalendar() {
@@ -80,6 +139,18 @@ public class MainActivity extends AppCompatActivity {
     public void goToVolunteerList() {
         Intent intent = new Intent(this, VolunteerListActivity.class);
         startActivity(intent);
+    }
+
+    public void updateUi(FirebaseUser user){
+        mAuth = FirebaseAuth.getInstance();
+
+        if(mAuth.getCurrentUser() == null){
+            // change "Sign Out" to "Login"
+            loginButton.setText("Login");
+        }else{
+            // change "Login" to "Sign Out"
+            loginButton.setText("Sign Out");
+        }
     }
 
 }
