@@ -9,7 +9,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,101 +26,70 @@
                 android:text="@string/MainActivityTitle"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
-                android:textSize="36sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="36sp" />
 
             <Button
                 android:id="@+id/loginButton"
-                style="@android:style/Widget.Button.Small"
+                style="@android:style/Widget.Holo.Button"
                 android:layout_width="62dp"
                 android:layout_height="27dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
                 android:background="@android:color/holo_blue_dark"
                 android:text="@string/loginButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
+                tools:layout_editor_absoluteX="333dp"
+                tools:layout_editor_absoluteY="61dp" />
 
             <Button
                 android:id="@+id/volunteerButton"
+                style="@android:style/Widget.Holo.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:background="@android:color/holo_blue_dark"
                 android:text="@string/volunteerButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="65dp" />
 
             <Button
                 android:id="@+id/createNewsButton"
                 style="@android:style/Widget.Button.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="84dp"
-                android:layout_marginEnd="16dp"
                 android:background="@android:color/holo_blue_dark"
                 android:text="@string/createNewsButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/newsTitle"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+                tools:layout_editor_absoluteX="293dp"
+                tools:layout_editor_absoluteY="172dp" />
 
             <Button
                 android:id="@+id/volunteerListButton"
                 style="@android:style/Widget.Button.Small"
                 android:layout_width="104dp"
                 android:layout_height="35dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="75dp"
                 android:background="@android:color/holo_blue_dark"
                 android:text="@string/volunteerListButton"
-                app:layout_constraintEnd_toStartOf="@+id/loginButton"
-                app:layout_constraintStart_toEndOf="@+id/volunteerButton"
-                app:layout_constraintTop_toBottomOf="@+id/mainActivityTitle" />
+                tools:layout_editor_absoluteX="154dp"
+                tools:layout_editor_absoluteY="61dp" />
 
             <TextView
                 android:id="@+id/newsTitle"
                 android:layout_width="133dp"
                 android:layout_height="55dp"
-                android:layout_marginStart="140dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="8dp"
                 android:text="@string/newsTitle"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_blue_light"
                 android:textSize="36sp"
-                app:layout_constraintEnd_toStartOf="@+id/createNewsButton"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/volunteerListButton" />
-
-            <ListView
-                android:layout_width="413dp"
-                android:layout_height="701dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
+                tools:layout_editor_absoluteX="144dp"
+                tools:layout_editor_absoluteY="156dp" />
 
             <EditText
                 android:id="@+id/TEMPORARY"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
                 android:ems="10"
                 android:hint="@string/tempString"
                 android:inputType="textPersonName"
                 android:text="Put Text here"
                 android:textColor="@color/colorAccent"
-                app:layout_constraintBottom_toTopOf="@+id/newsTitle"
-                app:layout_constraintEnd_toStartOf="@+id/newsTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/volunteerButton" />
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="111dp" />
 
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
