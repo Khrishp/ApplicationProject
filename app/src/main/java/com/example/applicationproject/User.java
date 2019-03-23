@@ -2,6 +2,10 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 
+/**
+ * Used to store the data that we need for each user as he or she signs up for the app.
+ * The data will eventually be stored in FireStore in its collections.
+ */
 public class User {
     // member data
     private String name;
@@ -9,14 +13,36 @@ public class User {
     private Integer hoursCount;
     private Integer permissions;
     private Double phoneNumber;
+    private String UID;
     //picture data type?
 
-    User(){ // new account is created
+    /**
+     * Default constructor will create a user with the lowest permissions and hours set to 0
+     */
+    User(){
         permissions = 0; // 0 is the lowest permissions ie. volunteers
         hoursCount = 0; // account should initialize with 0 hours worked
     }
 
-    // getters/setters
+    /**
+     * Non-Default constructor takes in the data from a new account that is created.
+     * @param n
+     * @param a
+     * @param h
+     * @param p
+     */
+    User(String n, Integer a, Integer h, Double p){
+        name = n;
+        age = a;
+        hoursCount = h;
+        phoneNumber = p;
+        permissions = 0;
+    }
+
+    /**
+     * GETTERS / SETTERS
+     * @return
+     */
     public String getName() {
         return name;
     }
@@ -53,6 +79,18 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    /**
+     * These are checkers to verify if a user has permission to access an item or see UI
+     * @return true if the user has the correct permission
+     */
     boolean canMessage(){
         return permissions > 0;
     }

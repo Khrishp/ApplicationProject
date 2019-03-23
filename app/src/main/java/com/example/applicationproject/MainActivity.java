@@ -25,11 +25,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * This activity will be able to lead to most of the other activities. It will check
+ * SharedPreferences to see if a user is logged in and change it's UI accordingly.
+ */
 public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
+    private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
+
+    Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
+    //Button createNewsButton = (Button)findViewById(R.id.);
+    Button calendarButton = (Button)findViewById(R.id.main_calendar);
+    Button logoutButton = (Button)findViewById(R.id.main_logout);
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
@@ -43,11 +52,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button volunteerListButton = (Button)findViewById(R.id.volunteerListButton);
-        Button createNewsButton = (Button)findViewById(R.id.createNewsButton);
-        Button volunteerButton = (Button)findViewById(R.id.volunteerButton);
-        Button loginButton = (Button)findViewById(R.id.loginButton);
+        mAuth = FirebaseAuth.getInstance();
 
+        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
+        updateUi(user); // then update UI accordingly
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -55,22 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 goToVolunteerList();
             }
         });
-        createNewsButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createNews();
-            }
-        });
-        volunteerButton.setOnClickListener(new Button.OnClickListener(){
+//        createNewsButton.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                createNews();
+//            }
+//        });
+        calendarButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
                 goToCalendar();
             }
         });
-        loginButton.setOnClickListener(new Button.OnClickListener() {
+        logoutButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                    signout();
             }
         });
 
@@ -96,21 +104,10 @@ public class MainActivity extends AppCompatActivity {
         richard.setName("Richard Hawkins");
         richard.setPhoneNumber(Double.valueOf("5093851497"));
 
-        db.collection("users").add(richard).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "Document added with ID: " + documentReference.getId());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document", e);
-            }
-        });
-
     }
 
-    public void login(){
+    public void signout(){
+        mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -123,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
     public void goToVolunteerList() {
         Intent intent = new Intent(this, VolunteerListActivity.class);
         startActivity(intent);
+    }
+
+    public void updateUi(FirebaseUser user){
+        mAuth = FirebaseAuth.getInstance();
+
+
     }
 
 }
