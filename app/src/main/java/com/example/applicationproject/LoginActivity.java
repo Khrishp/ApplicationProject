@@ -37,6 +37,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,15 +71,15 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginButton = (Button)findViewById(R.id.email_sign_in_button);
+        Button loginButton = (Button)findViewById(R.id.buttonlog);
         mAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-                mPasswordView = (EditText) findViewById(R.id.password);
+                mEmailView = (AutoCompleteTextView) findViewById(R.id.emailLog);
+                mPasswordView = (EditText) findViewById(R.id.passwordLog);
                 String email = mEmailView.getText().toString();
                 String pass = mPasswordView.getText().toString();
 

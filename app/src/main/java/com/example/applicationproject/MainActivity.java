@@ -35,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
 
-    Button volunteerListButton = (Button)findViewById(R.id.volunteerListButton);
-    Button createNewsButton = (Button)findViewById(R.id.createNewsButton);
-    Button volunteerButton = (Button)findViewById(R.id.volunteerButton);
-    Button loginButton = (Button)findViewById(R.id.loginButton);
+    Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
+    //Button createNewsButton = (Button)findViewById(R.id.);
+    Button calendarButton = (Button)findViewById(R.id.main_calendar);
+    Button logoutButton = (Button)findViewById(R.id.main_logout);
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
@@ -63,25 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 goToVolunteerList();
             }
         });
-        createNewsButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createNews();
-            }
-        });
-        volunteerButton.setOnClickListener(new Button.OnClickListener(){
+//        createNewsButton.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                createNews();
+//            }
+//        });
+        calendarButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
                 goToCalendar();
             }
         });
-        loginButton.setOnClickListener(new Button.OnClickListener() {
+        logoutButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(loginButton.getText() == "Login")
-                    login();
-                else
-                    signout(loginButton);
+                    signout();
             }
         });
 
@@ -107,26 +104,10 @@ public class MainActivity extends AppCompatActivity {
         richard.setName("Richard Hawkins");
         richard.setPhoneNumber(Double.valueOf("5093851497"));
 
-        db.collection("users").add(richard).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "Document added with ID: " + documentReference.getId());
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Error adding document", e);
-            }
-        });
-
     }
 
-    public void signout(Button loginButton){
+    public void signout(){
         mAuth.signOut();
-        loginButton.setText("Sign Out");
-    }
-
-    public void login(){
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -144,13 +125,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateUi(FirebaseUser user){
         mAuth = FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser() == null){
-            // change "Sign Out" to "Login"
-            loginButton.setText("Login");
-        }else{
-            // change "Login" to "Sign Out"
-            loginButton.setText("Sign Out");
-        }
+
     }
 
 }

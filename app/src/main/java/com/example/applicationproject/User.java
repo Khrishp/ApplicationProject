@@ -13,6 +13,7 @@ public class User {
     private Integer hoursCount;
     private Integer permissions;
     private Double phoneNumber;
+    private String UID;
     //picture data type?
 
     /**
@@ -76,6 +77,14 @@ public class User {
 
     public void setPhoneNumber(Double phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
     /**
