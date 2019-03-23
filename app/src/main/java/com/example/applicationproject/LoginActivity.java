@@ -3,6 +3,7 @@ package com.example.applicationproject;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -55,15 +56,15 @@ public class LoginActivity extends AppCompatActivity{
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private View mProgressView;
-    private View mLoginFormView;
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
+        // Check if user is signed in (non-null) and send to MainActivity if they are already logged in
         FirebaseUser currentUser = mAuth.getCurrentUser(); // this grabs the user if they are signed in
-        //updateUI(currentUser); TODO: update ui if they have already signed in
+        if(currentUser != null) { // if they are already signed in, go to the main activity
+            goToMain();
+        }
     }
 
     @Override
@@ -106,12 +107,10 @@ public class LoginActivity extends AppCompatActivity{
                                 if (task.isSuccessful()) {
                                     Log.d(TAG, "createUserWithEmail: Success");
                                     FirebaseUser user = mAuth.getCurrentUser(); //TODO: update UI accordingly
-                                    updateUi(user);
                                     finish();
                                 } else {
                                     Log.w(TAG, "createUserWithEmail: Failure", task.getException());
                                     Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                    updateUi(null);
                                     finish();
                                 }
                             }
@@ -133,9 +132,9 @@ public class LoginActivity extends AppCompatActivity{
         return password.length() > 4;
     }
 
-    private void updateUi(FirebaseUser user){
-        return;
+    private void goToMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
-
 }
 
