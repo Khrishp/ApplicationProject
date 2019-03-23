@@ -29,10 +29,12 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -58,19 +60,15 @@ public class LoginActivity extends AppCompatActivity{
     private EditText mPasswordView;
 
     @Override
-    public void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
         // Check if user is signed in (non-null) and send to MainActivity if they are already logged in
         FirebaseUser currentUser = mAuth.getCurrentUser(); // this grabs the user if they are signed in
         if(currentUser != null) { // if they are already signed in, go to the main activity
             goToMain();
         }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         Button loginButton = (Button)findViewById(R.id.buttonlog);
         mAuth = FirebaseAuth.getInstance();
@@ -78,6 +76,8 @@ public class LoginActivity extends AppCompatActivity{
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar2);
 
                 mEmailView = (AutoCompleteTextView) findViewById(R.id.emailLog);
                 mPasswordView = (EditText) findViewById(R.id.passwordLog);
@@ -87,54 +87,26 @@ public class LoginActivity extends AppCompatActivity{
                 Log.v(TAG, "Email being passed to function is: " + email);
                 Log.v(TAG, "Password being passed to function is: " + pass);
 
-                mAuth.signInWithEmailAndPassword(email, pass).addOnSuccessListener(LoginActivity.this, new OnSuccessListener<AuthResult>() {
+
+                mAuth.signInWithEmailAndPassword(email, pass).addOnFailureListener(LoginActivity.this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnSuccessListener(LoginActivity.this, new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(LoginActivity.this, "Signed-in", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, "Sign-in Successful", Toast.LENGTH_LONG).show();
+                        goToMain();
                     }
                 });
-
-                if (mAuth.getCurrentUser() == null) {
-
-                    if (!isEmailValid(email))
-                        Toast.makeText(LoginActivity.this, "Invalid Email", Toast.LENGTH_LONG).show();
-                    if (!isPasswordValid(pass))
-                        Toast.makeText(LoginActivity.this, "Invalid Password", Toast.LENGTH_LONG).show();
-                    else
-                        mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "createUserWithEmail: Success");
-                                    FirebaseUser user = mAuth.getCurrentUser(); //TODO: update UI accordingly
-                                    finish();
-                                } else {
-                                    Log.w(TAG, "createUserWithEmail: Failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                            }
-                        });
-                }else{
-                    Toast.makeText(LoginActivity.this, "Already Signed in", Toast.LENGTH_LONG).show();
-                    finish();
-                }
             }});
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with more logic?
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with more logic?
-        return password.length() > 4;
     }
 
     private void goToMain(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }
 
