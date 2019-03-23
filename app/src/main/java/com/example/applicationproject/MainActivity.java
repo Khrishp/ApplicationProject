@@ -43,19 +43,14 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
     @Override
-    public void onStart(){
-        super.onStart();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
-        updateUi(user); // then update UI accordingly
+//        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
+//        updateUi(user); // then update UI accordingly
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -82,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        FirebaseApp.initializeApp(this);
     }
 
     public void createNews() {
