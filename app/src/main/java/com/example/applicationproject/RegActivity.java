@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegActivity extends AppCompatActivity {
+
+    private static final String TAG = "RegActivity"; // use TAG for Logging
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,21 @@ public class RegActivity extends AppCompatActivity {
                 EditText mAge = (EditText)findViewById(R.id.ageReg);
                 EditText mHours = (EditText)findViewById(R.id.hoursReg);
 
-                String email = mEmail.toString();
-                String pass = mPassword.toString();
-                String cpass= mConfirmPassword.toString();
-                String name = mName.toString();
-                Integer age = Integer.valueOf(mAge.toString());
-                Integer hours = Integer.valueOf(mHours.toString());
+                Log.d(TAG, "about to declare All variables");
+
+                String email = mEmail.getText().toString();
+                String pass = mPassword.getText().toString();
+                String cpass= mConfirmPassword.getText().toString();
+                String name = mName.getText().toString();
+
+                Log.d(TAG, "about to declare integer values");
+                Integer age = Integer.parseInt(mAge.getText().toString());
+                Integer hours = Integer.parseInt(mHours.getText().toString());
+
+                Log.d(TAG, "this is the string age: " + age);
+                Log.d(TAG, "this is the string hours: " + hours);
+
+                Log.d(TAG, "Declared All variables");
 
                 if(pass.equals(cpass)){ //TODO: add checks if bodies are empty or not
                     User user = new User(name,age,hours,Double.valueOf("5093851497"));
