@@ -1,38 +1,25 @@
 package com.example.applicationproject;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class RegisterActivity extends AppCompatActivity {
-
-    private FirebaseAuth mAuth;
-    private EditText mEmail;
-    private EditText mPassword;
-    private EditText mConfirmPassword;
-    private EditText mName;
-    private EditText mAge;
-    private EditText mHours;
+public class RegActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-
+        setContentView(R.layout.activity_reg);
         Button registerButton = (Button)findViewById(R.id.buttonReg);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -40,12 +27,12 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mEmail = (EditText)findViewById(R.id.emailReg);
-                mPassword = (EditText)findViewById(R.id.passwordReg1);
-                mConfirmPassword = (EditText)findViewById(R.id.passwordReg2);
-                mName = (EditText)findViewById(R.id.nameReg);
-                mAge = (EditText)findViewById(R.id.ageReg);
-                mHours = (EditText)findViewById(R.id.hoursReg);
+                EditText mEmail = (EditText)findViewById(R.id.emailReg);
+                EditText mPassword = (EditText)findViewById(R.id.passwordReg1);
+                EditText mConfirmPassword = (EditText)findViewById(R.id.passwordReg2);
+                EditText mName = (EditText)findViewById(R.id.nameReg);
+                EditText mAge = (EditText)findViewById(R.id.ageReg);
+                EditText mHours = (EditText)findViewById(R.id.hoursReg);
 
                 String email = mEmail.toString();
                 String pass = mPassword.toString();
@@ -60,17 +47,17 @@ public class RegisterActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegActivity.this, "Account Created", Toast.LENGTH_LONG).show();
                             goToMain();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(RegisterActivity.this, "Account Creation Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegActivity.this, "Account Creation Failed", Toast.LENGTH_LONG).show();
                         }
                     });
                 }else{
-                    Toast.makeText(RegisterActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
                 }
             }
         });

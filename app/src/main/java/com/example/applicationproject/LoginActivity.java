@@ -52,17 +52,14 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity{
 
-    private FirebaseAuth mAuth;
     private String TAG = "LoginActiviy"; // used for debugging
-
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         // Check if user is signed in (non-null) and send to MainActivity if they are already logged in
         FirebaseUser currentUser = mAuth.getCurrentUser(); // this grabs the user if they are signed in
@@ -71,7 +68,7 @@ public class LoginActivity extends AppCompatActivity{
         }
 
         Button loginButton = (Button)findViewById(R.id.buttonlog);
-        mAuth = FirebaseAuth.getInstance();
+        Button registerButton = (Button)findViewById(R.id.buttonReg);
 
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -79,8 +76,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar2);
 
-                mEmailView = (AutoCompleteTextView) findViewById(R.id.emailLog);
-                mPasswordView = (EditText) findViewById(R.id.passwordLog);
+                AutoCompleteTextView mEmailView = (AutoCompleteTextView) findViewById(R.id.emailLog);
+                EditText mPasswordView = (EditText) findViewById(R.id.passwordLog);
                 String email = mEmailView.getText().toString();
                 String pass = mPasswordView.getText().toString();
 
@@ -88,23 +85,36 @@ public class LoginActivity extends AppCompatActivity{
                 Log.v(TAG, "Password being passed to function is: " + pass);
 
 
-                mAuth.signInWithEmailAndPassword(email, pass).addOnFailureListener(LoginActivity.this, new OnFailureListener() {
+                mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnSuccessListener(LoginActivity.this, new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(LoginActivity.this, "Sign-in Successful", Toast.LENGTH_LONG).show();
-                        goToMain();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(LoginActivity.this, "Sign-in Successful", Toast.LENGTH_LONG).show();
+                            goToMain();
+                            mAuth.signOut();
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }});
+
+        registerButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToRegister();
+            }
+        });
     }
 
     private void goToMain(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void goToRegister(){
+        Intent intent = new Intent(this, RegActivity.class);
         startActivity(intent);
         finish();
     }

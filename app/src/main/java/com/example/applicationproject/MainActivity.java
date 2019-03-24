@@ -35,11 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
 
-    Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
-    //Button createNewsButton = (Button)findViewById(R.id.);
-    Button calendarButton = (Button)findViewById(R.id.main_calendar);
-    Button logoutButton = (Button)findViewById(R.id.main_logout);
-
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
     @Override
@@ -47,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
+        Button calendarButton = (Button)findViewById(R.id.main_calendar);
+        Button logoutButton = (Button)findViewById(R.id.main_logout);
 
-//        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
-//        updateUi(user); // then update UI accordingly
+        mAuth = FirebaseAuth.getInstance();
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -115,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void updateUi(FirebaseUser user){
-        mAuth = FirebaseAuth.getInstance();
-
-
-    }
+//    public void updateUi(FirebaseUser user){
+//        mAuth = FirebaseAuth.getInstance();
+//
+//
+//    }
 
 }
