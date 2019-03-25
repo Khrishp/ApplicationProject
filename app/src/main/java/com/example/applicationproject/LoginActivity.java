@@ -67,14 +67,20 @@ public class LoginActivity extends AppCompatActivity{
             goToMain();
         }
 
-        Button loginButton = (Button)findViewById(R.id.buttonlog);
-        Button registerButton = (Button)findViewById(R.id.buttonReg);
+        final Button loginButton = (Button)findViewById(R.id.buttonlog);
+        final Button registerButton = (Button)findViewById(R.id.buttonReg);
+
 
         loginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar2);
+                final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar2);
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                loginButton.setVisibility(View.INVISIBLE);
+                registerButton.setVisibility(View.INVISIBLE);
 
                 AutoCompleteTextView mEmailView = (AutoCompleteTextView) findViewById(R.id.emailLog);
                 EditText mPasswordView = (EditText) findViewById(R.id.passwordLog);
@@ -91,9 +97,11 @@ public class LoginActivity extends AppCompatActivity{
                         if(task.isSuccessful()){
                             Toast.makeText(LoginActivity.this, "Sign-in Successful", Toast.LENGTH_LONG).show();
                             goToMain();
-                            mAuth.signOut();
                         }else{
                             Toast.makeText(LoginActivity.this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                            registerButton.setVisibility(View.VISIBLE);
+                            loginButton.setVisibility(View.VISIBLE);
                         }
                     }
                 });

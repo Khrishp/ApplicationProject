@@ -1,6 +1,7 @@
 package com.example.applicationproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,11 +25,17 @@ public class RegActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
-        Button registerButton = (Button)findViewById(R.id.buttonReg);
+
+        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+
+        final Button registerButton = (Button)findViewById(R.id.buttonReg);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                registerButton.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 EditText mEmail = (EditText)findViewById(R.id.emailReg);
@@ -45,8 +53,22 @@ public class RegActivity extends AppCompatActivity {
                 String name = mName.getText().toString();
 
                 Log.d(TAG, "about to declare integer values");
-                Integer age = Integer.parseInt(mAge.getText().toString());
-                Integer hours = Integer.parseInt(mHours.getText().toString());
+                String strAge = mAge.getText().toString();
+                String strHours = mHours.getText().toString();
+
+                if(email.equals("")){
+                    mEmail.setBackgroundColor(Color.RED);
+                }
+
+                Integer age = 0;
+                Integer hours = 0;
+
+                if(!strAge.equals("")){
+                    age = Integer.parseInt(strAge);
+                }
+                if (!strHours.equals("")) {
+                    hours = Integer.parseInt(strHours);
+                }
 
                 Log.d(TAG, "this is the string age: " + age);
                 Log.d(TAG, "this is the string hours: " + hours);
