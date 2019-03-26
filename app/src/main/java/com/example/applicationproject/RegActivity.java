@@ -47,6 +47,7 @@ public class RegActivity extends AppCompatActivity {
 
                 Log.d(TAG, "about to declare All variables");
 
+                Boolean emptyFields = false;
                 String email = mEmail.getText().toString();
                 String pass = mPassword.getText().toString();
                 String cpass= mConfirmPassword.getText().toString();
@@ -56,8 +57,21 @@ public class RegActivity extends AppCompatActivity {
                 String strAge = mAge.getText().toString();
                 String strHours = mHours.getText().toString();
 
-                if(email.equals("")){
+                if(email.equals("")) {
                     mEmail.setBackgroundColor(Color.RED);
+                    emptyFields = true;
+                }
+                if(pass.equals("")) {
+                    mPassword.setBackgroundColor(Color.RED);
+                    emptyFields = true;
+                }
+                if(cpass.equals("")) {
+                    mConfirmPassword.setBackgroundColor(Color.RED);
+                    emptyFields = true;
+                }
+                if(name.equals("")) {
+                    mName.setBackgroundColor(Color.RED);
+                    emptyFields = true;
                 }
 
                 Integer age = 0;
@@ -65,33 +79,47 @@ public class RegActivity extends AppCompatActivity {
 
                 if(!strAge.equals("")){
                     age = Integer.parseInt(strAge);
+                }else {
+                    mAge.setBackgroundColor(Color.RED);
+                    emptyFields = true;
                 }
                 if (!strHours.equals("")) {
                     hours = Integer.parseInt(strHours);
+                } else{
+                    mHours.setBackgroundColor(Color.RED);
+                    emptyFields = true;
                 }
 
-                Log.d(TAG, "this is the string age: " + age);
-                Log.d(TAG, "this is the string hours: " + hours);
+                Log.d(TAG, "this is the age: " + age);
+                Log.d(TAG, "this is the hours: " + hours);
 
                 Log.d(TAG, "Declared All variables");
 
-                if(pass.equals(cpass)){ //TODO: add checks if bodies are empty or not
-                    User user = new User(name,age,hours,Double.valueOf("5093851497"));
+                if(!emptyFields) {
+                    if (pass.equals(cpass)) { //TODO: add checks if bodies are empty or not
+                        User user = new User(name, age, hours, Double.valueOf("5093851497"));
 
-                    mAuth.createUserWithEmailAndPassword(email,pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                        @Override
-                        public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(RegActivity.this, "Account Created", Toast.LENGTH_LONG).show();
-                            goToMain();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(RegActivity.this, "Account Creation Failed", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                        mAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                Toast.makeText(RegActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+                                goToMain();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(RegActivity.this, "Account Creation Failed", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        Toast.makeText(RegActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        registerButton.setVisibility(View.VISIBLE);
+                    }
                 }else{
-                    Toast.makeText(RegActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegActivity.this,"Please Complete Empty Fields",Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    registerButton.setVisibility(View.VISIBLE);
                 }
             }
         });
