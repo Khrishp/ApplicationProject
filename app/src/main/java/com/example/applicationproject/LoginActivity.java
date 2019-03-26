@@ -52,7 +52,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity{
 
-    private String TAG = "LoginActiviy"; // used for debugging
+    private String TAG = "LoginActivity"; // used for debugging
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

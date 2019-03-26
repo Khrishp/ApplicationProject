@@ -45,6 +45,19 @@
             </intent-filter>
         </activity>
         <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".SignUpActivity"
+            android:parentActivityName=".SignUpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignUpActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SIGNUP" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
             android:name=".VolunteerListActivity"
             android:parentActivityName=".VolunteerListActivity">
             <meta-data
