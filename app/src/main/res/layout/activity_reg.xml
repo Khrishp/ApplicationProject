@@ -18,8 +18,10 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/reg_edittext_style"
             android:ems="10"
-            android:hint="Hours"
+            android:hint="Hours Worked"
             android:inputType="numberSigned"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="@+id/passwordReg2"
             app:layout_constraintTop_toBottomOf="@+id/passwordReg2" />
 
@@ -32,6 +34,8 @@
             android:ems="10"
             android:hint="Age"
             android:inputType="numberSigned"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintStart_toStartOf="@+id/passwordReg2"
             app:layout_constraintTop_toBottomOf="@+id/passwordReg2" />
 
@@ -46,6 +50,8 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -88,6 +94,8 @@
             android:ems="10"
             android:hint="E-Mail"
             android:inputType="textPersonName|textEmailAddress"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -125,6 +133,7 @@
             android:hint="Name"
             android:inputType="textPersonName"
             android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/emailReg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -140,6 +149,8 @@
             android:ems="10"
             android:hint="Confirm Password"
             android:inputType="textPersonName|textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordReg1" />

@@ -2,6 +2,7 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -45,6 +46,13 @@ public class RegActivity extends AppCompatActivity {
                 EditText mAge = (EditText)findViewById(R.id.ageReg);
                 EditText mHours = (EditText)findViewById(R.id.hoursReg);
 
+                mEmail.setBackgroundResource(R.drawable.reg_edittext_style);
+                mPassword.setBackgroundResource(R.drawable.reg_edittext_style);
+                mConfirmPassword.setBackgroundResource(R.drawable.reg_edittext_style);
+                mName.setBackgroundResource(R.drawable.reg_edittext_style);
+                mAge.setBackgroundResource(R.drawable.reg_edittext_style);
+                mHours.setBackgroundResource(R.drawable.reg_edittext_style);
+
                 Log.d(TAG, "about to declare All variables");
 
                 Boolean emptyFields = false;
@@ -58,19 +66,19 @@ public class RegActivity extends AppCompatActivity {
                 String strHours = mHours.getText().toString();
 
                 if(email.equals("")) {
-                    mEmail.setBackgroundColor(Color.RED);
+                    mEmail.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
                 if(pass.equals("")) {
-                    mPassword.setBackgroundColor(Color.RED);
+                    mPassword.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
                 if(cpass.equals("")) {
-                    mConfirmPassword.setBackgroundColor(Color.RED);
+                    mConfirmPassword.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
                 if(name.equals("")) {
-                    mName.setBackgroundColor(Color.RED);
+                    mName.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
 
@@ -80,13 +88,13 @@ public class RegActivity extends AppCompatActivity {
                 if(!strAge.equals("")){
                     age = Integer.parseInt(strAge);
                 }else {
-                    mAge.setBackgroundColor(Color.RED);
+                    mAge.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
                 if (!strHours.equals("")) {
                     hours = Integer.parseInt(strHours);
                 } else{
-                    mHours.setBackgroundColor(Color.RED);
+                    mHours.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
 
@@ -96,7 +104,7 @@ public class RegActivity extends AppCompatActivity {
                 Log.d(TAG, "Declared All variables");
 
                 if(!emptyFields) {
-                    if (pass.equals(cpass)) { //TODO: add checks if bodies are empty or not
+                    if (pass.equals(cpass)) {
                         User user = new User(name, age, hours, Double.valueOf("5093851497"));
 
                         mAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -109,6 +117,8 @@ public class RegActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(@NonNull Exception e) {
                                 Toast.makeText(RegActivity.this, "Account Creation Failed", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                registerButton.setVisibility(View.VISIBLE);
                             }
                         });
                     } else {
