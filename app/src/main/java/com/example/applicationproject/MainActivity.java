@@ -95,10 +95,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sign the user out of the app and go back to the sign-in activity. Terminate main because we
+     * don't want the user to see this activity again without logging in
+     */
     public void signout(){
         mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void goToCalendar() {
