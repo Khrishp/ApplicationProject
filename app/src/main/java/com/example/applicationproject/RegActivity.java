@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firestore.v1.WriteResult;
 
 public class RegActivity extends AppCompatActivity {
 
@@ -39,6 +42,7 @@ public class RegActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 EditText mEmail = (EditText)findViewById(R.id.emailReg);
                 EditText mPassword = (EditText)findViewById(R.id.passwordReg1);
                 EditText mConfirmPassword = (EditText)findViewById(R.id.passwordReg2);
@@ -56,7 +60,7 @@ public class RegActivity extends AppCompatActivity {
                 Log.d(TAG, "about to declare All variables");
 
                 Boolean emptyFields = false;
-                String email = mEmail.getText().toString();
+                final String email = mEmail.getText().toString();
                 String pass = mPassword.getText().toString();
                 String cpass= mConfirmPassword.getText().toString();
                 String name = mName.getText().toString();
@@ -105,12 +109,14 @@ public class RegActivity extends AppCompatActivity {
 
                 if(!emptyFields) {
                     if (pass.equals(cpass)) {
-                        User user = new User(name, age, hours, Double.valueOf("5093851497"));
+                        final User user = new User(name, age, hours, Double.valueOf("5093851497"));
 
                         mAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
                                 Toast.makeText(RegActivity.this, "Account Created", Toast.LENGTH_LONG).show();
+                                DocumentReference reference = db.collection("users").document(email);
+                                reference.set(user);
                                 goToMain();
                             }
                         }).addOnFailureListener(new OnFailureListener() {

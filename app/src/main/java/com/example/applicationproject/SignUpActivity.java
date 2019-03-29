@@ -19,19 +19,17 @@ import java.util.ArrayList;
  */
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
-    private TextView theDate;
-    private Button calendarButton;
-    private ArrayList<String> openHours;
-    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(TAG, "Entering onCreate().");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
-        theDate = findViewById(R.id.scheduleDate);
-        calendarButton = findViewById(R.id.calendarButton);
-        mRecyclerView = findViewById(R.id.recycler);
+        setContentView(R.layout.activity_signup);
+
+        Log.v(TAG, "Entering onCreate().");
+        TextView theDate = (TextView)findViewById(R.id.scheduleDate);
+        Button calendarButton = (Button)findViewById(R.id.calendarButton);
+        RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.recycler);
+        ArrayList<String> openHours;
 
         //I have suspicions about this line. Is this right? It's from the tutorial I watched but...
         Intent incomingIntent = getIntent();
