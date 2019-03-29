@@ -123,6 +123,8 @@ public class RegActivity extends AppCompatActivity {
                         });
                     } else {
                         Toast.makeText(RegActivity.this, "Passwords don't match", Toast.LENGTH_LONG).show();
+                        mConfirmPassword.setBackgroundResource(R.drawable.reg_edittext_style_red);
+                        mPassword.setBackgroundResource(R.drawable.reg_edittext_style_red);
                         progressBar.setVisibility(View.INVISIBLE);
                         registerButton.setVisibility(View.VISIBLE);
                     }
