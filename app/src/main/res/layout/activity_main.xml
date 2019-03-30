@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/vectorstock_7373274" />
+        app:srcCompat="@drawable/dog" />
 
     <Button
         android:id="@+id/main_logout"
@@ -22,7 +22,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/main_log_style"
+        android:background="@drawable/reg_button_style"
         android:text="Logout"
         android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@+id/title"
@@ -40,6 +40,7 @@
         android:gravity="center_vertical"
         android:text="Rexburg Animal Shelter Volunteer Helper"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
         android:textSize="24sp"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="@+id/userphoto"
@@ -49,89 +50,92 @@
 
     <TextView
         android:id="@+id/welcomeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="416dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:background="@drawable/main_welcome_style"
         android:text="Hello, Christopher Constantinople!"
         android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_calendar"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userphoto" />
 
     <Button
         android:id="@+id/main_calendar"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/reg_button_style"
         android:text="Calendar"
-        app:layout_constraintBottom_toBottomOf="@+id/main_user_list"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/main_user_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <Button
         android:id="@+id/main_user_list"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/reg_button_style"
         android:text="User List"
-        app:layout_constraintBottom_toBottomOf="@+id/main_account"
         app:layout_constraintEnd_toStartOf="@+id/main_account"
         app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/main_calendar" />
+        app:layout_constraintStart_toEndOf="@+id/main_calendar"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <Button
         android:id="@+id/main_account"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="136dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/reg_button_style"
         android:text="Account"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userphoto" />
+        app:layout_constraintStart_toEndOf="@+id/main_user_list"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <TextView
         android:id="@+id/newsTitleMain"
-        android:layout_width="226dp"
-        android:layout_height="64dp"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/main_news_style"
+        android:gravity="center_vertical"
         android:text="News"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_user_list"
-        app:layout_constraintVertical_bias="0.87" />
+        app:layout_constraintTop_toBottomOf="@+id/main_calendar" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="386dp"
-        android:layout_height="353dp"
+        android:layout_height="427dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="366dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="13dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/newsTitleMain">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/newslist"

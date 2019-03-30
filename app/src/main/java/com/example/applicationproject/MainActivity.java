@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView userUI = (TextView)findViewById(R.id.userName);
+        final TextView userUI = (TextView)findViewById(R.id.welcomeText);
 
 
         Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot name: " + document.getString("name"));
-                        userUI.setText(document.getString("name"));
+                        userUI.setText("Hello, " + document.getString("name") + '!');
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -106,21 +106,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNews() {
-        /* This was working database stuff
-        System.out.println("in create news function");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        System.out.println( "got the instance.");
-        DatabaseReference myRef = database.getReference("message");
-        System.out.println("got the reference.");
-        myRef.setValue("Poop");
-        System.out.println("set the value");
-        */
-
-        User richard = new User();
-        richard.setAge(23);
-        richard.setName("Richard Hawkins");
-        richard.setPhoneNumber(Double.valueOf("5093851497"));
-
     }
 
     /**

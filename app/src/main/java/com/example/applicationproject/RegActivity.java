@@ -49,6 +49,7 @@ public class RegActivity extends AppCompatActivity {
                 EditText mName = (EditText)findViewById(R.id.nameReg);
                 EditText mAge = (EditText)findViewById(R.id.ageReg);
                 EditText mHours = (EditText)findViewById(R.id.hoursReg);
+                EditText mPhone = (EditText)findViewById(R.id.phoneReg);
 
                 mEmail.setBackgroundResource(R.drawable.reg_edittext_style);
                 mPassword.setBackgroundResource(R.drawable.reg_edittext_style);
@@ -56,6 +57,7 @@ public class RegActivity extends AppCompatActivity {
                 mName.setBackgroundResource(R.drawable.reg_edittext_style);
                 mAge.setBackgroundResource(R.drawable.reg_edittext_style);
                 mHours.setBackgroundResource(R.drawable.reg_edittext_style);
+                mPhone.setBackgroundResource(R.drawable.reg_edittext_style);
 
                 Log.d(TAG, "about to declare All variables");
 
@@ -68,6 +70,7 @@ public class RegActivity extends AppCompatActivity {
                 Log.d(TAG, "about to declare integer values");
                 String strAge = mAge.getText().toString();
                 String strHours = mHours.getText().toString();
+                String strPhone = mPhone.getText().toString();
 
                 if(email.equals("")) {
                     mEmail.setBackgroundResource(R.drawable.reg_edittext_style_red);
@@ -88,6 +91,7 @@ public class RegActivity extends AppCompatActivity {
 
                 Integer age = 0;
                 Integer hours = 0;
+                Double phone = 0.0;
 
                 if(!strAge.equals("")){
                     age = Integer.parseInt(strAge);
@@ -101,6 +105,12 @@ public class RegActivity extends AppCompatActivity {
                     mHours.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;
                 }
+                if (!strPhone.equals("")){
+                    phone = Double.parseDouble(strPhone);
+                } else{
+                    mPhone.setBackgroundResource(R.drawable.reg_edittext_style_red);
+                    emptyFields = true;
+                }
 
                 Log.d(TAG, "this is the age: " + age);
                 Log.d(TAG, "this is the hours: " + hours);
@@ -109,7 +119,7 @@ public class RegActivity extends AppCompatActivity {
 
                 if(!emptyFields) {
                     if (pass.equals(cpass)) {
-                        final User user = new User(name, age, hours, Double.valueOf("5093851497"));
+                        final User user = new User(name, age, hours, phone);
 
                         mAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
