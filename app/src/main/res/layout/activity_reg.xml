@@ -21,7 +21,7 @@
             android:background="@drawable/reg_edittext_style"
             android:ems="10"
             android:hint="Phone Number"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|phone"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
