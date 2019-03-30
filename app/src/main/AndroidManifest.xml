@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.applicationproject">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -14,9 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RegActivity"></activity>
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ProfileActivity" />
         <activity xmlns:android="http://schemas.android.com/apk/res/android"
             android:name=".MainActivity"
@@ -24,12 +30,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity xmlns:android="http://schemas.android.com/apk/res/android"
             android:name=".CalendarActivity"
@@ -40,6 +40,19 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.CALENDAR" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".SignUpActivity"
+            android:parentActivityName=".SignUpActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SignUpActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.SIGNUP" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -57,7 +70,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivityTest" />
     </application>
 
 </manifest>

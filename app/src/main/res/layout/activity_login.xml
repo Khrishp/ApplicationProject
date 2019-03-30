@@ -21,16 +21,18 @@
         app:srcCompat="@drawable/userphoto" />
 
     <AutoCompleteTextView
-        android:background="@drawable/reg_edittext_style"
         android:id="@+id/emailLog"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
+        android:background="@drawable/reg_edittext_style"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,16 +45,18 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <EditText
-        android:background="@drawable/reg_edittext_style"
         android:id="@+id/passwordLog"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/reg_edittext_style"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />

@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +22,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,27 +42,41 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
 
-    Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
-    //Button createNewsButton = (Button)findViewById(R.id.);
-    Button calendarButton = (Button)findViewById(R.id.main_calendar);
-    Button logoutButton = (Button)findViewById(R.id.main_logout);
-
     private static final String TAG = "MainActivity"; // use TAG for Logging
-
-    @Override
-    public void onStart(){
-        super.onStart();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAuth = FirebaseAuth.getInstance();
+        final TextView userUI = (TextView)findViewById(R.id.userName);
 
-        FirebaseUser user = mAuth.getCurrentUser(); // check to see if a user is logged in
-        updateUi(user); // then update UI accordingly
+
+        Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
+        Button calendarButton = (Button)findViewById(R.id.main_calendar);
+        Button logoutButton = (Button)findViewById(R.id.main_logout);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+
+        DocumentReference docRef = db.collection("users").document(mAuth.getCurrentUser().getEmail());
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot name: " + document.getString("name"));
+                        userUI.setText(document.getString("name"));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -82,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        FirebaseApp.initializeApp(this);
     }
 
     public void createNews() {
@@ -97,8 +116,6 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("set the value");
         */
 
-        db = FirebaseFirestore.getInstance();
-
         User richard = new User();
         richard.setAge(23);
         richard.setName("Richard Hawkins");
@@ -106,10 +123,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sign the user out of the app and go back to the sign-in activity. Terminate main because we
+     * don't want the user to see this activity again without logging in
+     */
     public void signout(){
         mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void goToCalendar() {
@@ -122,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void updateUi(FirebaseUser user){
-        mAuth = FirebaseAuth.getInstance();
-
-
-    }
+//    public void updateUi(FirebaseUser user){
+//        mAuth = FirebaseAuth.getInstance();
+//
+//
+//    }
 
 }
