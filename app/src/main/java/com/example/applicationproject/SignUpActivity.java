@@ -3,10 +3,12 @@ package com.example.applicationproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,58 +22,35 @@ import java.util.ArrayList;
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
 
+    ArrayList<String> openHours;
+    String date;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
         Log.v(TAG, "Entering onCreate().");
-        TextView theDate = (TextView)findViewById(R.id.scheduleDate);
-        Button calendarButton = (Button)findViewById(R.id.calendarButton);
-        RecyclerView mRecyclerView = (RecyclerView)findViewById(R.id.recycler);
-        ArrayList<String> openHours;
+        TextView theDate = (TextView) findViewById(R.id.scheduleDate);
 
-        //I have suspicions about this line. Is this right? It's from the tutorial I watched but...
         Intent incomingIntent = getIntent();
 
-        String date = incomingIntent.getStringExtra("date");
+        date = incomingIntent.getStringExtra("date");
         theDate.setText(date);
-        openHours = new ArrayList();
-        mRecyclerView.addOnItemTouchListener(new MyTouchListener(this,
-                mRecyclerView,
-                new MyTouchListener.OnTouchActionListener() {
-                    @Override
-                    public void onLeftSwipe(View view, int position) {
-//we don't need it at least for now
-                        Log.v(TAG, "Left swipe on recycler");
-                    }
+        openHours = new ArrayList<>();
 
-                    @Override
-                    public void onRightSwipe(View view, int position) {
-//might not need, but nice to have just in case
-                        Log.v(TAG, "Right swipe on recycler");
-                    }
+        openHours.add("8:00am-9:00am");
+        openHours.add("9:00am-10:00am");
+        openHours.add("10:00am-11:00am");
+        openHours.add("11:00am-12:00pm");
+        initRecyclerView();
+    }
 
-                    @Override
-                    public void onClick(View view, int position) {
-                        Log.v(TAG, "Clicked on recyclerView at position: " + position);
-                        //Check if signed up for already or not
-
-                        //If signed up already, remove that hour from the user's schedule
-
-                        //Else add that hour to the user's schedule
-
-                    }
-                }));
-
-        calendarButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Log.v(TAG, "CalendarButton.onClick listener");
-                Intent intent = new Intent(SignUpActivity.this, CalendarActivity.class);
-                startActivity(intent);
-                }
-            }
-        );
+    private void initRecyclerView(){
+        Log.d(TAG, "initRecyclerView Initialized");
+        RecyclerView recyclerView = findViewById(R.id.recycler);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, openHours, date);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

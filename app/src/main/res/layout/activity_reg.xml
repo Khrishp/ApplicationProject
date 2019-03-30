@@ -40,7 +40,7 @@
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray"
-            android:textSize="13sp"
+            android:textSize="13.5dp"
             app:layout_constraintEnd_toEndOf="@+id/passwordReg2"
             app:layout_constraintTop_toBottomOf="@+id/passwordReg2" />
 
