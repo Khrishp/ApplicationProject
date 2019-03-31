@@ -30,7 +30,7 @@ public class CalendarActivity extends AppCompatActivity{
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Log.v(TAG, "Setting dateChangeListener.");
-                String date = (month + 1) + "/" + dayOfMonth + "/" + year;
+                String date = (month + 1) + " - " + dayOfMonth + " - " + year;
                 Log.v(TAG, "The date is: " + date);
                 Intent intent = new Intent(CalendarActivity.this, SignUpActivity.class);
                 intent.putExtra("date", date);

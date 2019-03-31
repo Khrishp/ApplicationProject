@@ -2,6 +2,7 @@ package com.example.applicationproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -43,12 +50,49 @@ public class SignUpActivity extends AppCompatActivity {
         openHours.add("9:00am-10:00am");
         openHours.add("10:00am-11:00am");
         openHours.add("11:00am-12:00pm");
+        openHours.add("12:00pm-1:00pm");
+        openHours.add("1:00pm-2:00pm");
+        openHours.add("2:00pm-3:00pm");
+        openHours.add("3:00pm-4:00pm");
+        openHours.add("4:00pm-5:00pm");
+
+        FirebaseFirestore fs = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = fs.collection("shifts").document(date);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+
+                        Log.d(TAG, "found document, heres the data: " + document.getData());
+                        Date data = document.toObject(Date.class);
+                        Log.d(TAG, "declared data");
+
+                        if(!data.shifts.isEmpty()){
+                            Log.d(TAG, "right before for loop");
+                            for (String shift : data.shifts){
+                                openHours.remove(shift);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        Log.d(TAG, "going to start the recycler");
+
+
         initRecyclerView();
     }
 
     private void initRecyclerView(){
         Log.d(TAG, "initRecyclerView Initialized");
         RecyclerView recyclerView = findViewById(R.id.recycler);
+
+        Log.d(TAG, "about to go into recycler view adapter");
+
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, openHours, date);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -7,18 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -35,6 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mSlotList = mSlotList;
         this.mContext = mContext;
         this.mDate = mDate;
+        fs = FirebaseFirestore.getInstance();
     }
 
     @NonNull
@@ -55,23 +56,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: clicked on: " + mSlotList.get(position));
+                Log.d(TAG, "mDate is: " + mDate);
 
-                DocumentReference ref = fs.collection("shifts").document(mDate);
-                ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+
+                final DocumentReference docRef = fs.collection("shifts").document(mDate);
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(mContext, "Date Document already exists", Toast.LENGTH_SHORT).show();
-                        }else{
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){ // if the date exists
+                                Log.d(TAG, "this is the document data: " + document.getData());
+                                Date data = document.toObject(Date.class);
+                                if(data.shifts.contains(mSlotList.get(position))) // if the document has the string
+                                {
+                                    Log.d(TAG, "This shift already exists! mSlotList: " + mSlotList.get(position));
+                                } else { // then create a new shift string
+                                    data.shifts.add(mSlotList.get(position));
+                                    docRef.set(data);
 
+                                }
+                            } else { // than create a new date object
+                                Log.d(TAG, "No such Document");
+                                docRef.set(new Date(mSlotList.get(position)));
+                            }
+                        } else{
+                            Log.d(TAG, "Get failed with ", task.getException());
                         }
                     }
                 });
 
 
-
-                Toast.makeText(mContext, mSlotList.get(position), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -86,71 +101,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView timeSlot;
         RelativeLayout parentLayout;
 
-        public ViewHolder(@NonNull View itemView) {
+
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             timeSlot = itemView.findViewById(R.id.signHours);
             parentLayout = itemView.findViewById(R.id.schedule_parent_layout);
         }
     }
 }
-
-
-
-
-
-
-
-    /*
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
-    private Context mContext;
-
-    public RecyclerViewAdapter(ArrayList<String> mImageNames, ArrayList<String> mImages, Context mContext) {
-        this.mImageNames = mImageNames;
-        this.mImages = mImages;
-        this.mContext = mContext;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.news_listitem, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
-        Log.d(TAG, "onBindViewHolder: called.");
-
-        viewHolder.imageText.setText(mImageNames.get(i));
-        viewHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mImageNames.get(i));
-
-                Toast.makeText(mContext, mImageNames.get(i), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return mImageNames.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView placeholder;
-        TextView imageText;
-        RelativeLayout parentLayout;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            placeholder = itemView.findViewById(R.id.placeHolder);
-            imageText = itemView.findViewById(R.id.dummyText);
-            parentLayout = itemView.findViewById(R.id.parent_layout);
-        }
-    }
-}
-    */
