@@ -65,7 +65,20 @@
                 android:value=".VolunteerListActivity" />
 
             <intent-filter>
-                <action android:name="android.intent.action.VOLUNTEERLIST" />
+                <action android:name="android.intent.action.WRITENEWS" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity xmlns:android="http://schemas.android.com/apk/res/android"
+            android:name=".WriteNewsActivity"
+            android:parentActivityName=".WriteNewsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".WriteNewsActivity" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.WRITENEWS" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

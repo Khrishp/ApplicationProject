@@ -38,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         Log.v(TAG, "Entering onCreate().");
-        TextView theDate = (TextView) findViewById(R.id.scheduleDate);
+        TextView theDate = findViewById(R.id.scheduleDate);
 
         Intent incomingIntent = getIntent();
 
@@ -66,14 +66,17 @@ public class SignUpActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if(document.exists()){
 
-                        Log.d(TAG, "found document, heres the data: " + document.getData());
+                        Log.d(TAG, "found document, here's the data: " + document.getData());
                         Date data = document.toObject(Date.class);
                         Log.d(TAG, "declared data");
 
                         if(!data.shifts.isEmpty()){
                             Log.d(TAG, "right before for loop");
                             for (String shift : data.shifts){
-                                openHours.remove(shift);
+                                {
+                                    openHours.remove(shift);
+
+                                }
                             }
                         }
                     }

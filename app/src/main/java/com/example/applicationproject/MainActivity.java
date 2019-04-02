@@ -26,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
 import org.w3c.dom.Text;
 
@@ -49,12 +50,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView userUI = (TextView)findViewById(R.id.welcomeText);
+        final TextView userUI = findViewById(R.id.welcomeText);
 
 
-        Button volunteerListButton = (Button)findViewById(R.id.main_user_list);
-        Button calendarButton = (Button)findViewById(R.id.main_calendar);
-        Button logoutButton = (Button)findViewById(R.id.main_logout);
+        Button volunteerListButton = findViewById(R.id.main_user_list);
+        Button calendarButton = findViewById(R.id.main_calendar);
+        Button logoutButton = findViewById(R.id.main_logout);
+        Button writeNewsButton = findViewById(R.id.writeNewsButton);
+
+        final TextView newsList = findViewById(R.id.newslist);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -78,18 +82,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*DocumentReference newsRef = db.collection("news").document("Still A Little Too Close");
+        newsRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot header: " + document.getString("header"));
+                        newsList.setText(document.getString("header") +"\n\n"+ document.getString("body"));
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });*/
+
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
                 goToVolunteerList();
             }
         });
-//        createNewsButton.setOnClickListener(new Button.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                createNews();
-//            }
-//        });
+        writeNewsButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createNews();
+            }
+        });
         calendarButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -106,12 +128,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createNews() {
+        Intent intent = new Intent(this, WriteNewsActivity.class);
+        startActivity(intent);
     }
 
     /**
      * Sign the user out of the app and go back to the sign-in activity. Terminate main because we
      * don't want the user to see this activity again without logging in
      */
+
+
     public void signout(){
         mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);

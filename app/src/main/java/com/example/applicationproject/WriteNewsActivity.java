@@ -1,5 +1,6 @@
 package com.example.applicationproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,9 +21,9 @@ public class WriteNewsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.v(TAG, "Creating...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        Log.v(TAG, "Creating...");
         Log.v(TAG, "Initializing/declaring variables...");
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         Date dateTest = Date.getDefaultInstance();
@@ -48,8 +49,10 @@ public class WriteNewsActivity extends AppCompatActivity {
                 final String body = bodyText.getText().toString();
                 final News news = new News(header, body, date);
                 Toast.makeText(WriteNewsActivity.this, "News Created", Toast.LENGTH_LONG).show();
-                DocumentReference reference = db.collection("news").document(date + "-" + header);
+                DocumentReference reference = db.collection("news").document(header);
                 reference.set(news);
+                Intent intent = new Intent(WriteNewsActivity.this, MainActivity.class);
+                        startActivity(intent);
             }
         });
 

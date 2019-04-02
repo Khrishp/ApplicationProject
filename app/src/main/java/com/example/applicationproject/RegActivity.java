@@ -30,10 +30,10 @@ public class RegActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
 
-        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
-        final Button registerButton = (Button)findViewById(R.id.buttonReg);
+        final Button registerButton = findViewById(R.id.buttonReg);
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,13 +43,13 @@ public class RegActivity extends AppCompatActivity {
 
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 final FirebaseFirestore db = FirebaseFirestore.getInstance();
-                EditText mEmail = (EditText)findViewById(R.id.emailReg);
-                EditText mPassword = (EditText)findViewById(R.id.passwordReg1);
-                EditText mConfirmPassword = (EditText)findViewById(R.id.passwordReg2);
-                EditText mName = (EditText)findViewById(R.id.nameReg);
-                EditText mAge = (EditText)findViewById(R.id.ageReg);
-                EditText mHours = (EditText)findViewById(R.id.hoursReg);
-                EditText mPhone = (EditText)findViewById(R.id.phoneReg);
+                EditText mEmail = findViewById(R.id.emailReg);
+                EditText mPassword = findViewById(R.id.passwordReg1);
+                EditText mConfirmPassword = findViewById(R.id.passwordReg2);
+                EditText mName = findViewById(R.id.nameReg);
+                EditText mAge = findViewById(R.id.ageReg);
+                EditText mHours = findViewById(R.id.hoursReg);
+                EditText mPhone = findViewById(R.id.phoneReg);
 
                 mEmail.setBackgroundResource(R.drawable.reg_edittext_style);
                 mPassword.setBackgroundResource(R.drawable.reg_edittext_style);
