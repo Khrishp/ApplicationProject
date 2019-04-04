@@ -88,7 +88,7 @@ public class RegActivity extends AppCompatActivity {
 
                 Integer age = 0;
                 Integer hours = 0;
-                Double phone = 0.0;
+                String phone = "(111) 111-1111";
 
                 if(!strAge.equals("")){
                     age = Integer.parseInt(strAge);
@@ -103,7 +103,7 @@ public class RegActivity extends AppCompatActivity {
                     emptyFields = true;
                 }
                 if (!strPhone.equals("")){
-                    phone = Double.parseDouble(strPhone);
+                    phone = strPhone;
                 } else{
                     mPhone.setBackgroundResource(R.drawable.reg_edittext_style_red);
                     emptyFields = true;

@@ -12,15 +12,21 @@ public class User {
     private Integer age;
     private Integer hoursCount;
     private Integer permissions;
-    private Double phoneNumber;
+    private String phoneNumber;
 
     /**
      * Default constructor will create a user with the lowest permissions and hours set to 0
      */
     User(){
+        name = "N/A";
+        age = 0;
+        hoursCount = 0;
+        phoneNumber = "(111)111-1111";
         permissions = 0; // 0 is the lowest permissions ie. volunteers
         hoursCount = 0; // account should initialize with 0 hours worked
     }
+
+
 
     /**
      * Non-Default constructor takes in the data from a new account that is created.
@@ -29,7 +35,7 @@ public class User {
      * @param h
      * @param p
      */
-    User(String n, Integer a, Integer h, Double p, Integer pm){
+    User(String n, Integer a, Integer h, String p, Integer pm){
         name = n;
         age = a;
         hoursCount = h;
@@ -69,11 +75,11 @@ public class User {
         this.permissions = permissions;
     }
 
-    public Double getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Double phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

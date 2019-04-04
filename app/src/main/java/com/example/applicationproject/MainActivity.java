@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         logoutButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    signout();
+                signout();
             }
         });
 
