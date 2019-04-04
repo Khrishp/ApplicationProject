@@ -12,15 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -76,14 +71,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 } else { // then create a new shift string
                                     data.shifts.add(mSlotList.get(position));
                                     docRef.set(data);
+                                    Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
 
                                 }
                             } else { // than create a new date object
                                 Log.d(TAG, "No such Document");
                                 docRef.set(new Date(mSlotList.get(position)));
+                                Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
                             }
                         } else{
                             Log.d(TAG, "Get failed with ", task.getException());
+                            Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
