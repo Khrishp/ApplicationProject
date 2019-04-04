@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="656dp"
         android:hint="Type header here"
@@ -21,20 +21,22 @@
         app:layout_constraintHorizontal_bias="0.759"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="676dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/headerText"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Enter Date..."
+        app:layout_constraintBottom_toTopOf="@+id/headerText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/makeNewsButton"
@@ -56,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="45dp"
         android:layout_marginEnd="324dp"
         android:layout_marginBottom="500dp"
         android:hint="Type news here..."
