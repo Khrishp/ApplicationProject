@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
     ArrayList<String> newsList;
+    News news;
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
@@ -75,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
         newsRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                newsList = new ArrayList<>();
                 if (task.isSuccessful()) {
+                    newsList = new ArrayList<>();
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot header: " + document.getString("header"));
-                        newsList.add(document.getString("body"));
+                        news = document.toObject(News.class);
+                        newsList.add(news.getBody());
+                        initRecyclerView();
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -114,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                     signout();
             }
         });
-
     }
 
     public void createNews() {

@@ -21,6 +21,11 @@ public class News {
         body = b;
         date = d;
     }
+    News (){
+        header = "";
+        body = "";
+        date = "";
+    }
 
     public String getHeader() {
         return header;
