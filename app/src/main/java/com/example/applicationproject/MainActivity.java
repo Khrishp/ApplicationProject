@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,6 +19,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 /**
  * This activity will be able to lead to most of the other activities. It will check
  * SharedPreferences to see if a user is logged in and change it's UI accordingly.
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
     SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
+    ArrayList<String> newsList;
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
 
@@ -42,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Button logoutButton = findViewById(R.id.main_logout);
         Button writeNewsButton = findViewById(R.id.writeNewsButton);
 
-        final TextView newsList = findViewById(R.id.newslist);
+        final TextView newsTextView = findViewById(R.id.newslist);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -61,28 +66,29 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "No such document");
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "get failed with " + task.getException());
                 }
             }
         });
 
-        /*DocumentReference newsRef = db.collection("news").document("Still A Little Too Close");
+        DocumentReference newsRef = db.collection("news").document("4-3-19");
         newsRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                newsList = new ArrayList<>();
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot header: " + document.getString("header"));
-                        newsList.setText(document.getString("header") +"\n\n"+ document.getString("body"));
+                        newsList.add(document.getString("body"));
                     } else {
                         Log.d(TAG, "No such document");
                     }
                 } else {
-                    Log.d(TAG, "get failed with ", task.getException());
+                    Log.d(TAG, "get failed with " + task.getException());
                 }
             }
-        });*/
+        });//*/
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -144,5 +150,14 @@ public class MainActivity extends AppCompatActivity {
 //
 //
 //    }
+private void initRecyclerView(){
+    Log.d(TAG, "initRecyclerView Initialized");
+    RecyclerView recyclerView = findViewById(R.id.newslist);
 
+    Log.d(TAG, "about to go into recycler view adapter");
+
+    NewsViewAdapter adapter = new NewsViewAdapter(this, newsList);
+    recyclerView.setAdapter(adapter);
+    recyclerView.setLayoutManager(new LinearLayoutManager(this));
+}
 }

@@ -6,19 +6,13 @@
     android:padding="12dp"
     android:id="@+id/parent_layout">
 
-    <ImageView
-        android:id="@+id/placeHolder"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:srcCompat="@drawable/userphoto" />
 
     <TextView
-        android:id="@+id/dummyText"
+        android:id="@+id/newsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="40dp"
-        android:layout_toRightOf="@id/placeHolder"
         android:text="Dummy Text"
         android:textColor="@color/colorAccent"
         android:textSize="18sp" />
