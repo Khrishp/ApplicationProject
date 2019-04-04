@@ -20,6 +20,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
@@ -35,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.mSlotList = mSlotList;
         this.mContext = mContext;
         this.mDate = mDate;
-        fs = FirebaseFirestore.getInstance();
+        this.fs = FirebaseFirestore.getInstance();
     }
 
     @NonNull
@@ -54,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 Log.d(TAG, "onClick: clicked on: " + mSlotList.get(position));
                 Log.d(TAG, "mDate is: " + mDate);
 

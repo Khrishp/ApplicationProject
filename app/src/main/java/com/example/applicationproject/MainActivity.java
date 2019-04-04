@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    SharedPreferences sharedPref; // TODO: need to store a boolean here that states "Logged in"
+    User currentUser;
     ArrayList<String> newsList;
     News news;
 
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Button calendarButton = findViewById(R.id.main_calendar);
         Button logoutButton = findViewById(R.id.main_logout);
         Button writeNewsButton = findViewById(R.id.writeNewsButton);
+        Button accountButton = findViewById(R.id.main_account);
 
         final TextView newsTextView = findViewById(R.id.newslist);
 
@@ -62,12 +63,13 @@ public class MainActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot name: " + document.getString("name"));
-                        userUI.setText("Hello, " + document.getString("name") + '!');
+                        currentUser = document.toObject(User.class);
+                        userUI.setText("Hello, " + currentUser.getName() + '!');
                     } else {
                         Log.d(TAG, "No such document");
                     }
                 } else {
-                    Log.d(TAG, "get failed with " + task.getException());
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
             }
         });
@@ -110,12 +112,19 @@ public class MainActivity extends AppCompatActivity {
                 goToCalendar();
             }
         });
+        accountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAccount();
+            }
+        });
         logoutButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                     signout();
             }
         });
+
     }
 
     public void createNews() {
@@ -134,6 +143,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void goToAccount(){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     public void goToCalendar() {

@@ -56,7 +56,6 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/main_welcome_style"
-        android:text="Hello, Christopher Constantinople!"
         android:textAlignment="center"
         android:textColor="@android:color/darker_gray"
         android:textSize="24sp"
