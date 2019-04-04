@@ -116,7 +116,7 @@ public class RegActivity extends AppCompatActivity {
 
                 if(!emptyFields) {
                     if (pass.equals(cpass)) {
-                        final User user = new User(name, age, hours, phone);
+                        final User user = new User(name, age, hours, phone, 0);
 
                         mAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override

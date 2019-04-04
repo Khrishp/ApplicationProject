@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     ArrayList<String> openHours;
     String date;
+    Boolean gotData = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,19 +73,17 @@ public class SignUpActivity extends AppCompatActivity {
                             for (String shift : data.shifts){
                                 {
                                     openHours.remove(shift);
+                                    Log.d(TAG, "removing shift - " + shift);
 
                                 }
                             }
                         }
+                        Log.d(TAG, "going to start the recycler");
+                        initRecyclerView();
                     }
                 }
             }
         });
-
-        Log.d(TAG, "going to start the recycler");
-
-
-        initRecyclerView();
     }
 
     private void initRecyclerView(){

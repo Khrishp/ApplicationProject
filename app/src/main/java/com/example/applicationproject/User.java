@@ -13,7 +13,6 @@ public class User {
     private Integer hoursCount;
     private Integer permissions;
     private Double phoneNumber;
-    //picture data type?
 
     /**
      * Default constructor will create a user with the lowest permissions and hours set to 0
@@ -30,12 +29,12 @@ public class User {
      * @param h
      * @param p
      */
-    User(String n, Integer a, Integer h, Double p){
+    User(String n, Integer a, Integer h, Double p, Integer pm){
         name = n;
         age = a;
         hoursCount = h;
         phoneNumber = p;
-        permissions = 0;
+        permissions = pm;
     }
 
     /**
