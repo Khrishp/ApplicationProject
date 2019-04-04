@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
     User currentUser;
-    ArrayList<String> newsList;
+    ArrayList<News> newsList;
     News news;
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         news = document.toObject(News.class);
-                        newsList.add(news.getBody());
+                        newsList.add(news);
                         initRecyclerView();
                     } else {
                         Log.d(TAG, "No such document");
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with " + task.getException());
                 }
             }
-        });//*/
+        });
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
