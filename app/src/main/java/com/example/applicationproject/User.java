@@ -1,6 +1,7 @@
 package com.example.applicationproject;
 
 import android.content.Intent;
+import android.util.Log;
 
 /**
  * Used to store the data that we need for each user as he or she signs up for the app.
@@ -11,16 +12,22 @@ public class User {
     private String name;
     private Integer age;
     private Integer hoursCount;
-    private Integer permissions;
-    private Double phoneNumber;
+    private Integer job;
+    private String phoneNumber;
 
     /**
      * Default constructor will create a user with the lowest permissions and hours set to 0
      */
     User(){
-        permissions = 0; // 0 is the lowest permissions ie. volunteers
+        name = "N/A";
+        age = 0;
+        hoursCount = 0;
+        phoneNumber = "(111)111-1111";
+        job = 1; // 0 is the lowest permissions ie. volunteers
         hoursCount = 0; // account should initialize with 0 hours worked
     }
+
+
 
     /**
      * Non-Default constructor takes in the data from a new account that is created.
@@ -29,12 +36,13 @@ public class User {
      * @param h
      * @param p
      */
-    User(String n, Integer a, Integer h, Double p, Integer pm){
+    User(String n, Integer a, Integer h, String p, Integer pm){
         name = n;
         age = a;
         hoursCount = h;
         phoneNumber = p;
-        permissions = pm;
+        Log.d("User","Thisis what pm is: " + pm);
+        job = pm;
     }
 
     /**
@@ -65,15 +73,19 @@ public class User {
         this.hoursCount = hoursCount;
     }
 
-    public void setPermissions(Integer permissions) {
-        this.permissions = permissions;
+    public Integer getJob() {
+        return job;
     }
 
-    public Double getPhoneNumber() {
+    public void setJob(Integer job) {
+        this.job = job;
+    }
+
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Double phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -82,14 +94,14 @@ public class User {
      * @return true if the user has the correct permission
      */
     boolean canMessage(){
-        return permissions > 0;
+        return job > 1;
     }
 
     boolean canEditVolunteers(){
-        return permissions > 0;
+        return job > 1;
     }
 
     boolean canEditInterns(){
-        return permissions > 1;
+        return job > 2;
     }
 }
