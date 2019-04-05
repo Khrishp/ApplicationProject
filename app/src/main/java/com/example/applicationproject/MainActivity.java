@@ -42,11 +42,14 @@ public class MainActivity extends AppCompatActivity {
         final TextView userUI = findViewById(R.id.welcomeText);
 
 
-        Button volunteerListButton = findViewById(R.id.main_user_list);
+        final Button volunteerListButton = findViewById(R.id.main_user_list);
         Button calendarButton = findViewById(R.id.main_calendar);
         Button logoutButton = findViewById(R.id.main_logout);
-        Button writeNewsButton = findViewById(R.id.writeNewsButton);
+        final Button writeNewsButton = findViewById(R.id.writeNewsButton);
         Button accountButton = findViewById(R.id.main_account);
+
+        volunteerListButton.setVisibility(View.INVISIBLE);
+        writeNewsButton.setVisibility(View.INVISIBLE);
 
         final TextView newsTextView = findViewById(R.id.newslist);
 
@@ -64,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "DocumentSnapshot name: " + document.getString("name"));
                         currentUser = document.toObject(User.class);
                         userUI.setText("Hello, " + currentUser.getName() + '!');
+
+                        if(currentUser.canEditVolunteers()) {
+                            volunteerListButton.setVisibility(View.VISIBLE);
+                            writeNewsButton.setVisibility(View.VISIBLE);
+                        }
                     } else {
                         Log.d(TAG, "No such document");
                     }
