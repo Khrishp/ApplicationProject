@@ -109,31 +109,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        /*
-        DocumentReference newsRef = db.collection("news").document("4-3-19");
-        newsRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    dateList = new ArrayList<>();
-                    headerList = new ArrayList<>();
-                    bodyList = new ArrayList<>();
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        news = document.toObject(News.class);
-                        dateList.add(news.getDate());
-                        headerList.add(news.getHeader());
-                        bodyList.add(news.getBody());
-                        initRecyclerView();
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with " + task.getException());
-                }
-            }
-        });*/
-
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -200,19 +175,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void updateUi(FirebaseUser user){
-//        mAuth = FirebaseAuth.getInstance();
-//
-//
-//    }
-private void initRecyclerView(){
-    Log.d(TAG, "initRecyclerView Initialized");
-    RecyclerView recyclerView = findViewById(R.id.newslist);
+    private void initRecyclerView() {
+        Log.d(TAG, "initRecyclerView Initialized");
+        RecyclerView recyclerView = findViewById(R.id.newslist);
 
-    Log.d(TAG, "about to go into recycler view adapter");
+        Log.d(TAG, "about to go into recycler view adapter");
 
-    NewsViewAdapter adapter = new NewsViewAdapter(this, dateList, headerList, bodyList);
-    recyclerView.setAdapter(adapter);
-    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-}
+        NewsViewAdapter adapter = new NewsViewAdapter(this, dateList, headerList, bodyList);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,6 +19,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/reg_edittext_style"
             android:hint="Enter Date..."
+            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintBottom_toTopOf="@+id/headerText"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,12 +42,15 @@
 
         <EditText
             android:id="@+id/bodyText"
-            android:layout_width="372dp"
+            android:layout_width="320dp"
             android:layout_height="410dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/reg_edittext_style"
             android:hint="Type news here..."
-            android:textAlignment="viewStart"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,11 +65,12 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/reg_edittext_style"
             android:hint="Type header here"
+            android:textColor="@android:color/white"
             android:textColorHint="@android:color/darker_gray"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateText" />
-    </ScrollView>
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
