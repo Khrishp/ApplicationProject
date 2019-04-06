@@ -23,6 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
+/**
+ * This is a Recycler View Adapter for inside the SignUp Activity. It displays the free hours that can be volunteered for.
+ * Clicking on a free hour will display a toast, add the hour to your hours count, and make the hour not free for
+ * anyone to sign up for anymore.
+ */
 public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.ViewHolder>{
 
     private static final String TAG = "ShiftViewAdapter";
