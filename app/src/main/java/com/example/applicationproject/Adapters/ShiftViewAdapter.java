@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.applicationproject.Objects.Date;
+import com.example.applicationproject.Objects.Shifts;
 import com.example.applicationproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -66,7 +66,7 @@ public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.View
                             DocumentSnapshot document = task.getResult();
                             if(document.exists()){ // if the date exists
                                 Log.d(TAG, "this is the document data: " + document.getData());
-                                Date data = document.toObject(Date.class);
+                                Shifts data = document.toObject(Shifts.class);
                                 if(data.getShifts().contains(mSlotList.get(position))) // if the document has the string
                                 {
                                     Log.d(TAG, "This shift already exists! mSlotList: " + mSlotList.get(position));
@@ -78,7 +78,7 @@ public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.View
                                 }
                             } else { // than create a new date object
                                 Log.d(TAG, "No such Document");
-                                docRef.set(new Date(mSlotList.get(position)));
+                                docRef.set(new Shifts(mSlotList.get(position)));
                                 Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
                             }
                         } else{
