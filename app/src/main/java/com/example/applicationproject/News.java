@@ -1,7 +1,5 @@
 package com.example.applicationproject;
 
-import java.util.Date;
-
 // more of just a struct for news to be stored
 public class News {
     private String header;

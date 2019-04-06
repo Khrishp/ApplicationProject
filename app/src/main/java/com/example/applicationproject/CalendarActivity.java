@@ -10,7 +10,7 @@ import android.widget.CalendarView;
 /**
  * Users will tap on the date they would like to view. This will take them to the
  * SignUp activity where they can manage dates/times of their work.
- * Potential ideas:
+ * Future implementations/ stretch goals:
  * - Days with no more hours to fill will show in a different color like gray.
  * - Days that the particular user has at least one scheduled hour on will show up in a color (red?)
  * - At the bottom, below the calendar, the user's next scheduled hour of work will appear. "Thursday, March 30 @ 3pm"

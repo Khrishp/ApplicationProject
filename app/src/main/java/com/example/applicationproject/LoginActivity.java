@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via email/password. The user may register a new account if they have not yet done so.
  */
 public class LoginActivity extends AppCompatActivity{
 

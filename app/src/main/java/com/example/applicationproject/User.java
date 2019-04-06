@@ -31,10 +31,10 @@ public class User {
 
     /**
      * Non-Default constructor takes in the data from a new account that is created.
-     * @param n
-     * @param a
-     * @param h
-     * @param p
+     * @param n = name
+     * @param a = age
+     * @param h = hours worked (hoursCount)
+     * @param p = phone number
      */
     User(String n, Integer a, Integer h, String p, Integer pm){
         name = n;

@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * List of all volunteers who have an account on the app, pulled from Firebase.
+ * Visible only to admin (?)
+ */
 public class VolunteerListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

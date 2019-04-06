@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 /**
  * This activity will be able to lead to most of the other activities. It will check
- * SharedPreferences to see if a user is logged in and change it's UI accordingly.
+ * to see if a user is logged in and change it's UI accordingly.
  */
 public class MainActivity extends AppCompatActivity {
 

@@ -14,6 +14,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Displays the current information of the user accessing it. This info is taken from Firestore.
+ * They can also change jobs here to reflect their position.
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     User user;

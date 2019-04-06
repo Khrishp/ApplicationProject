@@ -18,6 +18,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * This is for registering new accounts. Has several checks for validity (e.g. password > 4 characters, email
+ * is a real email, and all fields must be filled in. On success, it creates the User and adds them to Firestore. On failure,
+ * the reason is shown and a red outline appears on the failed field of entry.
+ */
 public class RegActivity extends AppCompatActivity {
 
     private static final String TAG = "RegActivity"; // use TAG for Logging

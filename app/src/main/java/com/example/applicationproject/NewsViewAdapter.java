@@ -39,6 +39,9 @@ public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull NewsViewAdapter.ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
+        Log.d(TAG, "mSlotList body: " + mSlotList.get(position).getBody());
+        Log.d(TAG, "mSlotList head: " + mSlotList.get(position).getHeader());
+        Log.d(TAG, "mSlotList date: " + mSlotList.get(position).getDate());
             holder.newsSlot.setText(mSlotList.get(position).getBody());
             holder.newsHeader.setText(mSlotList.get(position).getHeader());
             holder.newsDate.setText(mSlotList.get(position).getDate());
