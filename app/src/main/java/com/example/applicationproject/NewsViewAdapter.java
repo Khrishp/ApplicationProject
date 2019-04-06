@@ -11,18 +11,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.ViewHolder>{
 
     private static final String TAG = "NewsViewAdapter";
 
-    private ArrayList<String> mSlotList = new ArrayList<>();
+    private ArrayList<String> mBodyList = new ArrayList<>();
+    private ArrayList<String> mHeaderList = new ArrayList<>();
+    private ArrayList<String> mDateList = new ArrayList<>();
     private Context mContext;
     private FirebaseFirestore fs;
 
-    public NewsViewAdapter(Context mContext, ArrayList<String> mSlotList) {
-        this.mSlotList = mSlotList;
+    public NewsViewAdapter(Context mContext, ArrayList<String> dateList, ArrayList<String> headerList, ArrayList<String> bodyList) {
+        this.mDateList = dateList;
+        this.mHeaderList = headerList;
+        this.mBodyList = bodyList;
         this.mContext = mContext;
         fs = FirebaseFirestore.getInstance();
     }
@@ -39,62 +45,29 @@ public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull NewsViewAdapter.ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        holder.newsSlot.setText(mSlotList.get(position));
-
-        /*holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: clicked on: " + mSlotList.get(position));
-
-//TEMP HARD CODE    !!!
-                // ... .document("4-3-19");
-//Change to a variable
-                final DocumentReference docRef = fs.collection("news").document("4-3-19");
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            DocumentSnapshot document = task.getResult();
-                            if(document.exists()){
-                                Log.d(TAG, "this is the document data: " + document.getData());
-                                Date data = document.toObject(Date.class);
-                                if(data.shifts.contains(mSlotList.get(position))) // if the document has the string
-                                {
-                                    Log.d(TAG, "This shift already exists! mSlotList: " + mSlotList.get(position));
-                                } else { // then create a new shift string
-                                    data.shifts.add(mSlotList.get(position));
-                                    docRef.set(data);
-
-                                }
-                            } else { // than create a new date object
-                                Log.d(TAG, "No such Document");
-                                docRef.set(new Date(mSlotList.get(position)));
-                            }
-                        } else{
-                            Log.d(TAG, "Get failed with ", task.getException());
-                        }
-                    }
-                });
-
-
-            }
-        });*/
+        holder.dateSlot.setText(mDateList.get(position));
+        holder.headerSlot.setText(mHeaderList.get(position));
+        holder.bodySlot.setText(mBodyList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mSlotList.size();
+        return mDateList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView newsSlot;
+        TextView dateSlot;
+        TextView headerSlot;
+        TextView bodySlot;
         RelativeLayout parentLayout;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            newsSlot = itemView.findViewById(R.id.newsText);
+            dateSlot = itemView.findViewById(R.id.newsDate);
+            headerSlot = itemView.findViewById(R.id.newsHead);
+            bodySlot = itemView.findViewById(R.id.newsText);
             parentLayout = itemView.findViewById(R.id.news_parent_layout);
         }
     }
