@@ -1,4 +1,4 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Objects;
 
 // more of just a struct for news to be stored
 public class News {
@@ -14,12 +14,12 @@ public class News {
      * @param b
      * @param d
      */
-    News(String h, String b, String d){
+    public News(String h, String b, String d){
         header = h;
         body = b;
         date = d;
     }
-    News (){
+    public News (){
         header = "";
         body = "";
         date = "";
