@@ -1,18 +1,17 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.applicationproject.Objects.News;
+import com.example.applicationproject.R;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.type.Date;
 
 public class WriteNewsActivity extends AppCompatActivity {
     private static final String TAG = "WriteNewsActivity";

@@ -1,4 +1,4 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.applicationproject.R;
 
 import java.util.ArrayList;
 

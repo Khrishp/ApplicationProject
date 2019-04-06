@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".Activities.ProfileActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,13 +27,14 @@
             android:id="@+id/hoursTitle"
             android:layout_width="0dp"
             android:layout_height="27dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="Hours Worked: "
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@+id/ageTitle"
-            tools:layout_editor_absoluteX="8dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ageTitle" />
 
         <Button
             android:id="@+id/changeJobButton"

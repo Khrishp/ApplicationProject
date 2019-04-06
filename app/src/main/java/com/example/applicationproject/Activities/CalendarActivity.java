@@ -1,10 +1,12 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.CalendarView;
+
+import com.example.applicationproject.R;
 
 
 /**
@@ -16,8 +18,12 @@ import android.widget.CalendarView;
  * - At the bottom, below the calendar, the user's next scheduled hour of work will appear. "Thursday, March 30 @ 3pm"
  */
 public class CalendarActivity extends AppCompatActivity{
+
+
     private static final String TAG = "CalendarActivity"; // use TAG for Logging
     private CalendarView mCalendarView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.v(TAG, "Entered onCreate.");

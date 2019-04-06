@@ -1,4 +1,4 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.applicationproject.Objects.Date;
+import com.example.applicationproject.R;
+import com.example.applicationproject.Adapters.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -68,9 +71,9 @@ public class SignUpActivity extends AppCompatActivity {
                         Date data = document.toObject(Date.class);
                         Log.d(TAG, "declared data");
 
-                        if(!data.shifts.isEmpty()){
+                        if(!data.getShifts().isEmpty()){
                             Log.d(TAG, "right before for loop");
-                            for (String shift : data.shifts){
+                            for (String shift : data.getShifts()){
                                 {
                                     openHours.remove(shift);
                                     Log.d(TAG, "removing shift - " + shift);

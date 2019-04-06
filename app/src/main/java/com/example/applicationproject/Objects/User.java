@@ -1,4 +1,4 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Objects;
 
 import android.content.Intent;
 import android.util.Log;
@@ -18,7 +18,7 @@ public class User {
     /**
      * Default constructor will create a user with the lowest permissions and hours set to 0
      */
-    User(){
+    public User(){
         name = "N/A";
         age = 0;
         hoursCount = 0;
@@ -36,7 +36,7 @@ public class User {
      * @param h
      * @param p
      */
-    User(String n, Integer a, Integer h, String p, Integer pm){
+    public User(String n, Integer a, Integer h, String p, Integer pm){
         name = n;
         age = a;
         hoursCount = h;
@@ -93,15 +93,15 @@ public class User {
      * These are checkers to verify if a user has permission to access an item or see UI
      * @return true if the user has the correct permission
      */
-    boolean canMessage(){
+    public boolean canMessage(){
         return job > 1;
     }
 
-    boolean canEditVolunteers(){
+    public boolean canEditVolunteers(){
         return job > 1;
     }
 
-    boolean canEditInterns(){
+    public boolean canEditInterns(){
         return job > 2;
     }
 }

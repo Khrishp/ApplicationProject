@@ -1,4 +1,4 @@
-package com.example.applicationproject;
+package com.example.applicationproject.Helpers;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
