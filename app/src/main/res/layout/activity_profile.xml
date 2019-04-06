@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -123,7 +123,7 @@
 
         <TextView
             android:id="@+id/emailText"
-            android:layout_width="190dp"
+            android:layout_width="0dp"
             android:layout_height="22dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
@@ -138,10 +138,13 @@
             android:layout_height="159dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/dog"
+            android:contentDescription="dog"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameText"
+            app:srcCompat="@drawable/dog"
             tools:srcCompat="@drawable/dog" />
 
         <TextView
@@ -195,4 +198,4 @@
             app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
     </android.support.constraint.ConstraintLayout>
 
-</LinearLayout>
+</ScrollView>
