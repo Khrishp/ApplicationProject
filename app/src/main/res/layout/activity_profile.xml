@@ -9,14 +9,14 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/profile_parent_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/phoneTitle"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Phone Number: "
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -27,9 +27,9 @@
         <TextView
             android:id="@+id/hoursTitle"
             android:layout_width="0dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Hours Worked: "
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -42,26 +42,41 @@
             android:layout_width="120dp"
             android:layout_height="37dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/reg_button_style"
             android:padding="5dp"
             android:text="Change Job"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/removeUser"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/jobText" />
+
+        <Button
+            android:id="@+id/removeUser"
+            android:layout_width="120dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/reg_button_style"
+            android:backgroundTint="@color/colorAccent"
+            android:padding="5dp"
+            android:text="Remove User"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/changeJobButton"
+            app:layout_constraintTop_toTopOf="@+id/changeJobButton" />
 
         <TextView
             android:id="@+id/phoneText"
-            android:layout_width="0dp"
+            android:layout_width="190dp"
             android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/phoneTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="@+id/emailText"
+            app:layout_constraintTop_toBottomOf="@+id/phoneTitle" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline4"
@@ -73,9 +88,9 @@
         <TextView
             android:id="@+id/ageTitle"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Age: "
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -85,22 +100,20 @@
 
         <TextView
             android:id="@+id/hoursText"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="190dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/hoursTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="@+id/ageText"
+            app:layout_constraintTop_toBottomOf="@+id/hoursTitle" />
 
         <TextView
             android:id="@+id/jobTitle"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Job: "
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -108,53 +121,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hoursTitle" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="265dp" />
-
         <TextView
             android:id="@+id/emailText"
-            android:layout_width="0dp"
+            android:layout_width="190dp"
             android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/emailTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailTitle" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="159dp"
             android:layout_height="159dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameText"
-            tools:srcCompat="@drawable/userphoto" />
+            tools:srcCompat="@drawable/dog" />
 
         <TextView
             android:id="@+id/ageText"
-            android:layout_width="0dp"
+            android:layout_width="190dp"
             android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ageTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="@+id/phoneText"
+            app:layout_constraintTop_toBottomOf="@+id/ageTitle" />
 
         <TextView
             android:id="@+id/emailTitle"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="Email:"
             android:textAlignment="textStart"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
@@ -167,7 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:text="Name"
             android:textAlignment="center"
@@ -181,15 +186,13 @@
 
         <TextView
             android:id="@+id/jobText"
-            android:layout_width="0dp"
-            android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="190dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/jobTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline3" />
+            app:layout_constraintStart_toStartOf="@+id/hoursText"
+            app:layout_constraintTop_toBottomOf="@+id/jobTitle" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
