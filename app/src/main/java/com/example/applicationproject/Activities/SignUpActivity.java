@@ -85,9 +85,9 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                         Log.d(TAG, "going to start the recycler");
-                        initRecyclerView();
                     }
                 }
+                initRecyclerView();
             }
         });
     }

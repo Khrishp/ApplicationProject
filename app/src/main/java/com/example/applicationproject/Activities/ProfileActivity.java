@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     User viewer;
     FirebaseAuth mAuth;
     FirebaseFirestore db;
+    DocumentReference currentUserDocument;
 
     String email;
     String name;
@@ -69,6 +70,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         changeJobButton.setVisibility(View.INVISIBLE);
         deleteUserButton.setVisibility(View.INVISIBLE);
+
+        Log.d(TAG, "get current email is: " + mAuth.getCurrentUser().getEmail());
 
         final DocumentReference doc = db.collection("users").document(mAuth.getCurrentUser().getEmail());
         doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -113,6 +116,8 @@ public class ProfileActivity extends AppCompatActivity {
                             Log.d(TAG, "User ageView gotten");
                             hoursView.setText(currentUser.getHoursCount().toString());
                             Log.d(TAG, "User hoursView gotten");
+
+                            db.collection("users").document(email);
                             if(currentUser.getJob() == 3)
                                 jobView.setText("Manager");
                             else if(currentUser.getJob() == 2)
@@ -127,11 +132,11 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
 
-        final DocumentReference currentUserDocument = db.collection("users").document(email);
-
         changeJobButton.setOnClickListener(new Button.OnClickListener(){
             @Override
                     public void onClick(View v) {
+                currentUserDocument = db.collection("users").document(email);
+
                 if (currentUser.getJob() == 1) {
                     currentUser.setJob(2);
                     Toast.makeText(ProfileActivity.this, "Volunteer is now Intern", Toast.LENGTH_SHORT).show();
@@ -149,6 +154,7 @@ public class ProfileActivity extends AppCompatActivity {
         deleteUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currentUserDocument = db.collection("users").document(email);
                 currentUserDocument.delete();
             }
         });
