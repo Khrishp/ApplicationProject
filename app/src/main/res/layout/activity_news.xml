@@ -6,61 +6,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/headerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/reg_edittext_style"
-        android:hint="Type header here"
-        android:textColorHint="@android:color/darker_gray"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateText" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/dateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/reg_edittext_style"
-        android:hint="Enter Date..."
-        android:textColorHint="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/headerText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <EditText
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/reg_edittext_style"
+            android:hint="Enter Date..."
+            android:textColorHint="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/headerText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/makeNewsButton"
-        android:layout_width="136dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
-        android:background="@drawable/reg_button_style"
-        android:text="Create"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/makeNewsButton"
+            android:layout_width="136dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/reg_button_style"
+            android:text="Create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bodyText" />
 
-    <EditText
-        android:id="@+id/bodyText"
-        android:layout_width="372dp"
-        android:layout_height="410dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/reg_edittext_style"
-        android:hint="Type news here..."
-        android:textAlignment="viewStart"
-        android:textColorHint="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerText" />
+        <EditText
+            android:id="@+id/bodyText"
+            android:layout_width="372dp"
+            android:layout_height="410dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/reg_edittext_style"
+            android:hint="Type news here..."
+            android:textAlignment="viewStart"
+            android:textColorHint="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerText" />
+
+        <EditText
+            android:id="@+id/headerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/reg_edittext_style"
+            android:hint="Type header here"
+            android:textColorHint="@android:color/darker_gray"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateText" />
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

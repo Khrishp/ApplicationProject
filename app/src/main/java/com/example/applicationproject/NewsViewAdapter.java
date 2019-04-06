@@ -11,18 +11,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.ViewHolder>{
 
     private static final String TAG = "NewsViewAdapter";
 
-    private ArrayList<News> mSlotList;
+    private ArrayList<String> mBodyList = new ArrayList<>();
+    private ArrayList<String> mHeaderList = new ArrayList<>();
+    private ArrayList<String> mDateList = new ArrayList<>();
     private Context mContext;
     private FirebaseFirestore fs;
 
-    public NewsViewAdapter(Context mContext, ArrayList<News> mSlotList) {
-        this.mSlotList = mSlotList;
+    public NewsViewAdapter(Context mContext, ArrayList<String> dateList, ArrayList<String> headerList, ArrayList<String> bodyList) {
+        this.mDateList = dateList;
+        this.mHeaderList = headerList;
+        this.mBodyList = bodyList;
         this.mContext = mContext;
         fs = FirebaseFirestore.getInstance();
     }
@@ -39,33 +45,29 @@ public class NewsViewAdapter extends RecyclerView.Adapter<NewsViewAdapter.ViewHo
     public void onBindViewHolder(@NonNull NewsViewAdapter.ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        Log.d(TAG, "mSlotList body: " + mSlotList.get(position).getBody());
-        Log.d(TAG, "mSlotList head: " + mSlotList.get(position).getHeader());
-        Log.d(TAG, "mSlotList date: " + mSlotList.get(position).getDate());
-            holder.newsSlot.setText(mSlotList.get(position).getBody());
-            holder.newsHeader.setText(mSlotList.get(position).getHeader());
-            holder.newsDate.setText(mSlotList.get(position).getDate());
-
-
+        holder.dateSlot.setText(mDateList.get(position));
+        holder.headerSlot.setText(mHeaderList.get(position));
+        holder.bodySlot.setText(mBodyList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mSlotList.size();
+        return mDateList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView newsDate;
-        TextView newsHeader;
-        TextView newsSlot;
+
+        TextView dateSlot;
+        TextView headerSlot;
+        TextView bodySlot;
         RelativeLayout parentLayout;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            newsDate = itemView.findViewById(R.id.newsDate);
-            newsHeader = itemView.findViewById(R.id.newsHead);
-            newsSlot = itemView.findViewById(R.id.newsText);
+            dateSlot = itemView.findViewById(R.id.newsDate);
+            headerSlot = itemView.findViewById(R.id.newsHead);
+            bodySlot = itemView.findViewById(R.id.newsText);
             parentLayout = itemView.findViewById(R.id.news_parent_layout);
         }
     }

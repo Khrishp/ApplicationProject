@@ -17,19 +17,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 /**
  * This activity will be able to lead to most of the other activities. It will check
- * to see if a user is logged in and change it's UI accordingly.
+ * SharedPreferences to see if a user is logged in and change it's UI accordingly.
  */
 public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
     User currentUser;
-    ArrayList<News> newsList;
+    ArrayList<String> dateList;
+    ArrayList<String> headerList;
+    ArrayList<String> bodyList;
+
     News news;
 
     private static final String TAG = "MainActivity"; // use TAG for Logging
@@ -81,16 +86,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        db.collection("news")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            dateList = new ArrayList<>();
+                            headerList = new ArrayList<>();
+                            bodyList = new ArrayList<>();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                news = document.toObject(News.class);
+                                dateList.add(news.getDate());
+                                headerList.add(news.getHeader());
+                                bodyList.add(news.getBody());
+                            }
+                            initRecyclerView();
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        /*
         DocumentReference newsRef = db.collection("news").document("4-3-19");
         newsRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    newsList = new ArrayList<>();
+                    dateList = new ArrayList<>();
+                    headerList = new ArrayList<>();
+                    bodyList = new ArrayList<>();
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         news = document.toObject(News.class);
-                        newsList.add(news);
+                        dateList.add(news.getDate());
+                        headerList.add(news.getHeader());
+                        bodyList.add(news.getBody());
                         initRecyclerView();
                     } else {
                         Log.d(TAG, "No such document");
@@ -99,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "get failed with " + task.getException());
                 }
             }
-        });
+        });*/
 
         volunteerListButton.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -178,7 +211,7 @@ private void initRecyclerView(){
 
     Log.d(TAG, "about to go into recycler view adapter");
 
-    NewsViewAdapter adapter = new NewsViewAdapter(this, newsList);
+    NewsViewAdapter adapter = new NewsViewAdapter(this, dateList, headerList, bodyList);
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
 }
