@@ -12,9 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.applicationproject.Objects.Shifts;
+import com.example.applicationproject.Objects.User;
 import com.example.applicationproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -57,6 +59,8 @@ public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.View
                 Log.d(TAG, "onClick: clicked on: " + mSlotList.get(position));
                 Log.d(TAG, "mDate is: " + mDate);
 
+                final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
                 final DocumentReference docRef = fs.collection("shifts").document(mDate);
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -74,12 +78,41 @@ public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.View
                                     data.getShifts().add(mSlotList.get(position));
                                     docRef.set(data);
                                     Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
-
+                                    final DocumentReference doc = fs.collection("users").document(mAuth.getCurrentUser().getEmail());
+                                    doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if(task.isSuccessful()){
+                                                Log.d(TAG, "task successful");
+                                                DocumentSnapshot documentAcc = task.getResult();
+                                                if (documentAcc.exists()) {
+                                                    User user = documentAcc.toObject(User.class);
+                                                    user.setHoursCount(user.getHoursCount() + 1);
+                                                    doc.set(user);
+                                                }
+                                            }
+                                        }
+                                    });
                                 }
                             } else { // than create a new date object
                                 Log.d(TAG, "No such Document");
                                 docRef.set(new Shifts(mSlotList.get(position)));
                                 Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
+                                final DocumentReference doc = fs.collection("users").document(mAuth.getCurrentUser().getEmail());
+                                doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if(task.isSuccessful()){
+                                            Log.d(TAG, "task successful");
+                                            DocumentSnapshot documentAcc = task.getResult();
+                                            if (documentAcc.exists()) {
+                                                User user = documentAcc.toObject(User.class);
+                                                user.setHoursCount(user.getHoursCount() + 1);
+                                                doc.set(user);
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         } else{
                             Log.d(TAG, "Get failed with ", task.getException());
