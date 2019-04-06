@@ -1,6 +1,7 @@
 package com.example.applicationproject.Activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +23,7 @@ import java.util.Comparator;
 
 /**
  * List of all volunteers who have an account on the app, pulled from Firebase.
- * Visible only to admin (?)
+ * Visible only to admin
  */
 public class VolunteerListActivity extends AppCompatActivity {
 
@@ -55,15 +56,17 @@ public class VolunteerListActivity extends AppCompatActivity {
                             }
 
 
-                            userList.sort(new Comparator<User>() {
-                                @Override
-                                public int compare(User o1, User o2) {
-                                    if ((int)o1.getName().charAt(0) < (int)o2.getName().charAt(0))
-                                        return 1;
-                                    else
-                                        return 0;
-                                }
-                            });
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                userList.sort(new Comparator<User>() {
+                                    @Override
+                                    public int compare(User o1, User o2) {
+                                        if ((int)o1.getName().charAt(0) < (int)o2.getName().charAt(0))
+                                            return 1;
+                                        else
+                                            return 0;
+                                    }
+                                });
+                            }
 
                             for(User person : userList){
                                 nameList.add(person.getName());

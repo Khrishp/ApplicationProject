@@ -18,9 +18,13 @@ import com.example.applicationproject.R;
 
 import java.util.ArrayList;
 
+/**
+ * This Recycler View adapter for VolunteerList displays the name and hours of each in the list of Users, pulled from
+ * Firebase Firestore.
+ */
 public class VolunteerViewAdapter extends RecyclerView.Adapter<VolunteerViewAdapter.ViewHolder>{
 
-    private static final String TAG = "NewsViewAdapter";
+    private static final String TAG = "VolunteerViewAdapter";
 
     private ArrayList<String> mNameList;
     private ArrayList<Integer> mHoursList;
