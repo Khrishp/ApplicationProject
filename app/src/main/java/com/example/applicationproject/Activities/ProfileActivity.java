@@ -46,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        
+
         //won't need to change this chunk if working correctly. checks current user's permissions
         changeJobButton.setVisibility(View.INVISIBLE);
         DocumentReference doc = db.collection("users").document(mAuth.getCurrentUser().getEmail());
@@ -70,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
         Log.d(TAG, "declared textviews");
 
 
-        DocumentReference docRef = db.collection("users").document(mAuth.getCurrentUser().getEmail());
+        final DocumentReference docRef = db.collection("users").document(mAuth.getCurrentUser().getEmail());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -106,5 +106,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        changeJobButton.setOnClickListener(new Button.OnClickListener(){
+            @Override
+                    public void onClick(View v) {
+                if (user.getJob() == 1) {
+                    user.setJob(2);
+                    Toast.makeText(ProfileActivity.this, "Volunteer is now Intern", Toast.LENGTH_SHORT).show();
+                } else if (user.getJob() == 2) {
+                    user.setJob(3);
+                    Toast.makeText(ProfileActivity.this, "Intern is now Admin", Toast.LENGTH_SHORT).show();
+                } else {
+                    user.setJob(1);
+                    Toast.makeText(ProfileActivity.this, "Admin is now Volunteer", Toast.LENGTH_SHORT).show();
+                }
+                docRef.set(user);
+            }
+            });
+        }
     }
-}
+
