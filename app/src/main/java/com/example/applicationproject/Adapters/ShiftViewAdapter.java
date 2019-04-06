@@ -21,20 +21,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-/**
- * This adapter is the engine of our RecyclerView. It pulls the free shifts from Firestore and displays them in the view.
- * It also keeps track of what was signed up for, storing it online.
- */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.ViewHolder>{
 
-    private static final String TAG = "RecyclerViewAdapter";
+    private static final String TAG = "ShiftViewAdapter";
 
     private ArrayList<String> mSlotList = new ArrayList<>();
     private Context mContext;
     private String mDate;
     private FirebaseFirestore fs;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mSlotList, String mDate) {
+    public ShiftViewAdapter(Context mContext, ArrayList<String> mSlotList, String mDate) {
         this.mSlotList = mSlotList;
         this.mContext = mContext;
         this.mDate = mDate;

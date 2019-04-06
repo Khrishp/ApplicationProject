@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.applicationproject.Adapters.ShiftViewAdapter;
 import com.example.applicationproject.Objects.Date;
 import com.example.applicationproject.R;
-import com.example.applicationproject.Adapters.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -95,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Log.d(TAG, "about to go into recycler view adapter");
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, openHours, date);
+        ShiftViewAdapter adapter = new ShiftViewAdapter(this, openHours, date);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
