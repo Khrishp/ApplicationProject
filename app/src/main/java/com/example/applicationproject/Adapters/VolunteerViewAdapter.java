@@ -1,6 +1,7 @@
 package com.example.applicationproject.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.applicationproject.Activities.CalendarActivity;
+import com.example.applicationproject.Activities.ProfileActivity;
+import com.example.applicationproject.Activities.SignUpActivity;
 import com.example.applicationproject.R;
 
 import java.util.ArrayList;
@@ -42,6 +46,13 @@ public class VolunteerViewAdapter extends RecyclerView.Adapter<VolunteerViewAdap
 
         holder.nameSlot.setText(mNameList.get(position));
         holder.hoursSlot.setText("" + mHoursList.get(position));
+
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToProfileActivity(mNameList.get(position));
+            }
+        });
     }
 
     @Override
@@ -62,5 +73,11 @@ public class VolunteerViewAdapter extends RecyclerView.Adapter<VolunteerViewAdap
             hoursSlot = itemView.findViewById(R.id.volunteerHours);
             parentLayout = itemView.findViewById(R.id.volunteer_parent_layout);
         }
+    }
+
+    public void goToProfileActivity(String name){
+        Intent intent = new Intent(mContext, ProfileActivity.class);
+        intent.putExtra("name", name);
+        mContext.startActivity(intent);
     }
 }

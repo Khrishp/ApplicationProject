@@ -60,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
         volunteerListButton.setVisibility(View.INVISIBLE);
         writeNewsButton.setVisibility(View.INVISIBLE);
 
-        final TextView newsTextView = findViewById(R.id.newslist);
-
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -155,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
      * Sign the user out of the app and go back to the sign-in activity. Terminate main because we
      * don't want the user to see this activity again without logging in
      */
-
-
     public void signout(){
         mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
@@ -166,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToAccount(){
         Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("name", currentUser.getName());
         startActivity(intent);
     }
 
