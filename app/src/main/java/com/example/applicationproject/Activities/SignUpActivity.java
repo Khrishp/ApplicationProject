@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.example.applicationproject.Objects.Date;
+import com.example.applicationproject.Adapters.ShiftViewAdapter;
+import com.example.applicationproject.Objects.Shifts;
 import com.example.applicationproject.R;
-import com.example.applicationproject.Adapters.RecyclerViewAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
                     if(document.exists()){
 
                         Log.d(TAG, "found document, here's the data: " + document.getData());
-                        Date data = document.toObject(Date.class);
+                        Shifts data = document.toObject(Shifts.class);
                         Log.d(TAG, "declared data");
 
                         if(!data.getShifts().isEmpty()){
@@ -95,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         Log.d(TAG, "about to go into recycler view adapter");
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, openHours, date);
+        ShiftViewAdapter adapter = new ShiftViewAdapter(this, openHours, date);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

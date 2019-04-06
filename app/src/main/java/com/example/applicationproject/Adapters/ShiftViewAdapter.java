@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.applicationproject.Objects.Date;
+import com.example.applicationproject.Objects.Shifts;
 import com.example.applicationproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,20 +21,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
-/**
- * This adapter is the engine of our RecyclerView. It pulls the free shifts from Firestore and displays them in the view.
- * It also keeps track of what was signed up for, storing it online.
- */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
+public class ShiftViewAdapter extends RecyclerView.Adapter<ShiftViewAdapter.ViewHolder>{
 
-    private static final String TAG = "RecyclerViewAdapter";
+    private static final String TAG = "ShiftViewAdapter";
 
     private ArrayList<String> mSlotList = new ArrayList<>();
     private Context mContext;
     private String mDate;
     private FirebaseFirestore fs;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mSlotList, String mDate) {
+    public ShiftViewAdapter(Context mContext, ArrayList<String> mSlotList, String mDate) {
         this.mSlotList = mSlotList;
         this.mContext = mContext;
         this.mDate = mDate;
@@ -70,7 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                             DocumentSnapshot document = task.getResult();
                             if(document.exists()){ // if the date exists
                                 Log.d(TAG, "this is the document data: " + document.getData());
-                                Date data = document.toObject(Date.class);
+                                Shifts data = document.toObject(Shifts.class);
                                 if(data.getShifts().contains(mSlotList.get(position))) // if the document has the string
                                 {
                                     Log.d(TAG, "This shift already exists! mSlotList: " + mSlotList.get(position));
@@ -82,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 }
                             } else { // than create a new date object
                                 Log.d(TAG, "No such Document");
-                                docRef.set(new Date(mSlotList.get(position)));
+                                docRef.set(new Shifts(mSlotList.get(position)));
                                 Toast.makeText(mContext, "Signed up for shift: " + mSlotList.get(position), Toast.LENGTH_SHORT).show();
                             }
                         } else{

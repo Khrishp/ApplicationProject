@@ -2,19 +2,19 @@ package com.example.applicationproject.Objects;
 
 import java.util.ArrayList;
 
-public class Date {
+public class Shifts {
 
 
     ArrayList<String> shifts = new ArrayList<>();
 
-    public Date(){
+    public Shifts(){
     }
 
-    public Date(String newSlot){
+    public Shifts(String newSlot){
         shifts.add(newSlot);
     }
 
-    public Date(ArrayList<String> shifts) {
+    public Shifts(ArrayList<String> shifts) {
         this.shifts = shifts;
     }
 
