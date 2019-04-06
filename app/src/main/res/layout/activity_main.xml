@@ -1,163 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/userphoto"
-        android:layout_width="78dp"
-        android:layout_height="79dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dog" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/main_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/reg_button_style"
-        android:text="Logout"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toTopOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/main_account"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/reg_button_style"
+            android:text="Account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/main_user_list"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center_vertical"
-        android:text="Rexburg Animal Shelter Volunteer Helper"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="@+id/userphoto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/userphoto"
-        app:layout_constraintTop_toTopOf="@+id/userphoto" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_vertical"
+            android:text="Rexburg Animal Shelter Volunteer Helper"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/userphoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/userphoto"
+            app:layout_constraintTop_toTopOf="@+id/userphoto" />
 
-    <TextView
-        android:id="@+id/welcomeText"
-        android:layout_width="416dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/main_welcome_style"
-        android:textAlignment="center"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userphoto" />
+        <Button
+            android:id="@+id/writeNewsButton"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/main_news_style"
+            android:gravity="center_vertical"
+            android:text="News"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_calendar" />
 
-    <Button
-        android:id="@+id/main_calendar"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/reg_button_style"
-        android:text="Calendar"
-        app:layout_constraintEnd_toStartOf="@+id/main_user_list"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+        <Button
+            android:id="@+id/main_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/reg_button_style"
+            android:text="Logout"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toTopOf="@+id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/main_user_list"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="2dp"
-        android:background="@drawable/reg_button_style"
-        android:text="User List"
-        app:layout_constraintEnd_toStartOf="@+id/main_account"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toEndOf="@+id/main_calendar"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+        <Button
+            android:id="@+id/main_calendar"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/reg_button_style"
+            android:text="Calendar"
+            app:layout_constraintEnd_toStartOf="@+id/main_user_list"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
-    <Button
-        android:id="@+id/main_account"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/reg_button_style"
-        android:text="Account"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_user_list"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+        <ImageView
+            android:id="@+id/userphoto"
+            android:layout_width="78dp"
+            android:layout_height="79dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dog" />
 
-    <Button
-        android:id="@+id/writeNewsButton"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/main_news_style"
-        android:gravity="center_vertical"
-        android:text="News"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_calendar" />
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="386dp"
+            android:layout_height="405dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/writeNewsButton"
+            app:layout_constraintVertical_bias="0.0">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="386dp"
-        android:layout_height="405dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writeNewsButton"
-        app:layout_constraintVertical_bias="0.0">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/newslist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/newslist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/NewsTitle"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:background="@drawable/main_news_style"
+            android:gravity="center_vertical"
+            android:text="News"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/writeNewsButton"
+            app:layout_constraintStart_toStartOf="@+id/writeNewsButton"
+            app:layout_constraintTop_toTopOf="@+id/writeNewsButton" />
 
-    <TextView
-        android:id="@+id/NewsTitle"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:background="@drawable/main_news_style"
-        android:gravity="center_vertical"
-        android:text="News"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/writeNewsButton"
-        app:layout_constraintStart_toStartOf="@+id/writeNewsButton"
-        app:layout_constraintTop_toTopOf="@+id/writeNewsButton" />
+        <Button
+            android:id="@+id/main_user_list"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/reg_button_style"
+            android:text="User List"
+            app:layout_constraintEnd_toStartOf="@+id/main_account"
+            app:layout_constraintHorizontal_bias="0.714"
+            app:layout_constraintStart_toEndOf="@+id/main_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
+
+        <TextView
+            android:id="@+id/welcomeText"
+            android:layout_width="416dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/main_welcome_style"
+            android:textAlignment="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userphoto" />
+    </android.support.constraint.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
